@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Version>0.2.0</Version>
+    <Authors>Martin TÁBOR</Authors>
+    <Company>Martin TÁBOR</Company>
+    <Product>Serio</Product>
+    <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
+    <NeutralLanguage>cs-CZ</NeutralLanguage>
+    <PackageReleaseNotes>.NET SDK 5.0.101 (WPF)
+VS Comunnity 2019 v16.8.3</PackageReleaseNotes>
+    <ApplicationIcon>ikona.ico</ApplicationIcon>
+    <Copyright>Martin TÁBOR</Copyright>
+    <PackageLicenseExpression>CC BY-SA 4.0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="creative_commons_32px.png" />
+    <None Remove="github_32px.png" />
+    <None Remove="ikona.ico" />
+    <None Remove="ikona_128px.png" />
+    <None Remove="ikona_cb_128px.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="creative_commons_32px.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="github_32px.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ikona.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ikona_128px.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ikona_cb_128px.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

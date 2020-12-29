@@ -1,0 +1,81 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
+namespace Serio
+{
+    /// <summary>
+    /// Interakční logika pro OAplikaciWindow.xaml
+    /// </summary>
+    public partial class WindowOAplikaci : Window
+    {
+        // časovač pro easteregg obrázku loga
+        System.Windows.Threading.DispatcherTimer casovacEgg = new System.Windows.Threading.DispatcherTimer();
+
+
+        public WindowOAplikaci()
+        {
+            InitializeComponent();
+
+            titleNazev.Text = "SerIO";
+            titleVerze.Text += App.VERZE;
+            imgGithub.ToolTip += " – " + App.GITHUB;
+            titleLicence.Text += App.LICENCE;
+            titleAutor.Text += String.Format("–{0}  {1}", DateTime.Now.Year, App.AUTOR);
+
+            // nastavení časovače pro easteregg
+            casovacEgg.Interval = new TimeSpan(0, 0, 0, 0, 250);
+            casovacEgg.Tick += new EventHandler(casovacEgg_Tick);
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            // zavře okno po stisknutí Esc
+            if (e.Key.ToString() == "Escape")
+            {
+                this.Close();
+            }
+        }
+
+        // EasterEgg pro ikonu loga
+        Boolean eggActive = false;
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!eggActive)
+            {
+                eggActive = true;
+                casovacEgg.Start();
+
+            }
+            else
+            {
+                eggActive = false;
+                casovacEgg.Stop();
+                logoImage.Source = ikonaPuvodni;
+                eggZmena = false;
+            }
+
+        }
+
+        ImageSource ikonaCb = new BitmapImage(new Uri("ikona_cb_128px.png", UriKind.Relative));
+        ImageSource ikonaPuvodni = new BitmapImage(new Uri("ikona_128px.png", UriKind.Relative));
+        Boolean eggZmena = false;
+        private void casovacEgg_Tick(object sender, EventArgs e)
+        {
+            if (!eggZmena)
+            {
+                logoImage.Source = ikonaCb;
+                eggZmena = true;
+            }
+            else
+            {
+                logoImage.Source = ikonaPuvodni;
+                eggZmena = false;
+            }
+
+        }
+
+    }
+}
