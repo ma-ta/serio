@@ -1,0 +1,16 @@
+# SerIO
+> Jednoduchý sériový terminál (pro Arduino apod.)
+
+**Použité technologie:**
+
+- .NET SDK 5.0.101,
+- WPF,
+- VS Community 2019 v16.8.3
+
+**Ke stažení:**
+
+> - [Běhové prostředí .NET Runtime 5.0](//dotnet.microsoft.com/download/dotnet/current/runtime)
+
+**Screenshot:**:
+
+![Screenshot aplikace Serio v0.2.0](/serio.png)
