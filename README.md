@@ -9,10 +9,9 @@
 
 **Ke stažení:**
 
-> - [Serio 0.2 (win-x86)](//github.com/ma-ta/serio/releases/download/v0.2.0-alpha/Serio_v0.2.0_win-x86.exe)
-> - [Serio 0.2 (win-x64)](//github.com/ma-ta/serio/releases/download/v0.2.0-alpha/Serio_v0.2.0_win-x64.exe)
-
-> - [Běhové prostředí .NET Runtime 5.0](//dotnet.microsoft.com/download/dotnet/current/runtime)
+- [Serio 0.2 (win-x86)](//github.com/ma-ta/serio/releases/download/v0.2.0-alpha/Serio_v0.2.0_win-x86.exe)
+- [Serio 0.2 (win-x64)](//github.com/ma-ta/serio/releases/download/v0.2.0-alpha/Serio_v0.2.0_win-x64.exe)
+- [Běhové prostředí .NET Runtime 5.0](//dotnet.microsoft.com/download/dotnet/current/runtime)
 
 **Screenshot:**
 
