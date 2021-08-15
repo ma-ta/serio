@@ -11,22 +11,19 @@ namespace Serio
     /// </summary>
     public partial class WindowOAplikaci : Window
     {
-        // časovač pro easteregg obrázku loga
-        System.Windows.Threading.DispatcherTimer casovacEgg = new System.Windows.Threading.DispatcherTimer();
-
-
         public WindowOAplikaci()
         {
             InitializeComponent();
 
+            // nastavení popisků okna OAplikaci
             titleNazev.Text = "SerIO";
             titleVerze.Text += App.VERZE;
             imgGithub.ToolTip += " – " + App.GITHUB;
             titleLicence.Text += App.LICENCE;
             titleAutor.Text += String.Format("–{0}  {1}", DateTime.Now.Year, App.AUTOR);
 
-            // nastavení časovače pro easteregg
-            casovacEgg.Interval = new TimeSpan(0, 0, 0, 0, 250);
+            // nastavení časovače pro EasterEgg
+            casovacEgg.Interval = new TimeSpan(0, 0, 0, 0, 350); // interval blikání [ms]
             casovacEgg.Tick += new EventHandler(casovacEgg_Tick);
         }
 
@@ -34,20 +31,21 @@ namespace Serio
         {
             // zavře okno po stisknutí Esc
             if (e.Key.ToString() == "Escape")
-            {
                 this.Close();
-            }
         }
 
+
         // EasterEgg pro ikonu loga
+
+        System.Windows.Threading.DispatcherTimer casovacEgg = new();
         Boolean eggActive = false;
+        
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!eggActive)
             {
                 eggActive = true;
                 casovacEgg.Start();
-
             }
             else
             {
@@ -59,9 +57,12 @@ namespace Serio
 
         }
 
+
         ImageSource ikonaCb = new BitmapImage(new Uri("ikona_cb_128px.png", UriKind.Relative));
         ImageSource ikonaPuvodni = new BitmapImage(new Uri("ikona_128px.png", UriKind.Relative));
+        
         Boolean eggZmena = false;
+
         private void casovacEgg_Tick(object sender, EventArgs e)
         {
             if (!eggZmena)
@@ -76,6 +77,8 @@ namespace Serio
             }
 
         }
+
+        // </EasterEgg>
 
     }
 }

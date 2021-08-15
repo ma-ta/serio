@@ -13,17 +13,19 @@ namespace Serio
     /// </summary>
     public partial class MainWindow : Window
     {
-        SolidColorBrush barvaBila = new SolidColorBrush(Color.FromArgb(0xFF, 0xF2, 0xFF, 0xFF)); // #FFF2FFFF
-        SolidColorBrush barvaModra1 = new SolidColorBrush(Color.FromArgb(0xFF, 0x92, 0xCA, 0xF4)); // #FF92CAF4
-        SolidColorBrush barvaModra2 = new SolidColorBrush(Color.FromArgb(0xFF, 0x56, 0x9C, 0xD6)); // #FF569CD6
-        SolidColorBrush barvaZelena = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0xCC, 0x6A)); // #FF00CC6A
-        SolidColorBrush barvaCervena = new SolidColorBrush(Color.FromArgb(0xFF, 0xE8, 0x11, 0x23)); // #FFE81123
 
+        SolidColorBrush barvaBila = new(Color.FromArgb(0xFF, 0xF2, 0xFF, 0xFF)); // #FFF2FFFF
+        SolidColorBrush barvaModra1 = new(Color.FromArgb(0xFF, 0x92, 0xCA, 0xF4)); // #FF92CAF4
+        SolidColorBrush barvaModra2 = new(Color.FromArgb(0xFF, 0x56, 0x9C, 0xD6)); // #FF569CD6
+        SolidColorBrush barvaZelena = new(Color.FromArgb(0xFF, 0x00, 0xCC, 0x6A)); // #FF00CC6A
+        SolidColorBrush barvaCervena = new(Color.FromArgb(0xFF, 0xE8, 0x11, 0x23)); // #FFE81123
+
+        // inicializace konstant a proměnných
         public String nazevAplikace = App.NAZEV;
         public String podTitul = App.PODTITUL;
         public String autor = App.AUTOR;
         public String email = App.GITHUB;
-        public String verzeAplikace = App.VERZE; // System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+        public String verzeAplikace = App.VERZE;
         public String aktualniRok = DateTime.Now.Year.ToString();
 
         public delegate void NoArgDelegate();
@@ -73,7 +75,7 @@ namespace Serio
                 }
                 dostupnePorty1 = dostupnePorty;
 
-                //ladění
+                // DEBUG
                 //textBox_Out.AppendText("Změna portů\n");
             }
 
@@ -221,17 +223,18 @@ namespace Serio
 
         // MAIN MENU
 
+        // MENU - Soubor - Export do *.txt
         private void export_Click(object sender, RoutedEventArgs e)
         {
             if ((textBox_In.Text != "") || (textBox_Out.Text != ""))
             {
                 try
                 {
-                    String podtrzeni = new String('=', 33);
+                    String podtrzeni = new String('=', 35);
                     String cas = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     String exportString = podtrzeni + Environment.NewLine;
-                    exportString += " " + nazevAplikace.ToUpper() + " log | " + cas + " " + Environment.NewLine;
-                    exportString += " ver.: " + verzeAplikace.Substring(0, 5) + Environment.NewLine;
+                    exportString += "   " + nazevAplikace.Substring(0, 3) + nazevAplikace.Substring(3).ToUpper() + " v" + verzeAplikace.Substring(0, 5) + "   |   " + cas.Substring(0, 10) + Environment.NewLine;
+                    exportString += "    " + "Log export    |    " + cas.Substring(11) + Environment.NewLine;
                     exportString += podtrzeni + Environment.NewLine;
                     exportString += Environment.NewLine + Environment.NewLine + "PŘIJATÉ:" + Environment.NewLine + "--------" + Environment.NewLine;
                     exportString += textBox_In.Text;
@@ -241,7 +244,7 @@ namespace Serio
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.Filter = "Textový soubor (*.txt)|*.txt|Bez přípony|*.*";
                     saveFileDialog.Title = "Export";
-                    saveFileDialog.FileName = nazevAplikace + "LOG-01";
+                    saveFileDialog.FileName = nazevAplikace + "_LOG001";
                     if (saveFileDialog.ShowDialog() == true)
                         File.WriteAllText(saveFileDialog.FileName, exportString);
                 }
@@ -260,6 +263,7 @@ namespace Serio
             }
         }
 
+        // MENU - Soubor - Ukončit
         private void exit_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Přejete si aplikaci ukončit?", "Konec", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
@@ -275,6 +279,7 @@ namespace Serio
             }
         }
 
+        // MENU - Nástroje
         private void smazatPrijate_Click(object sender, RoutedEventArgs e)
         {
             textBox_In.Clear();
@@ -283,6 +288,8 @@ namespace Serio
         {
             textBox_Out.Clear();
         }
+
+        // MENU - Nápověda
         private void about_Click(object sender, RoutedEventArgs e)
         {
             WindowOAplikaci oAplikaci = new WindowOAplikaci();
