@@ -3,15 +3,14 @@
 
 ### Použité technologie:
 
-- .NET SDK 5.0.101,
-- WPF,
-- VS Community 2019 v16.8.3
+- VS Community 2022 v17.0.0-preview.3,
+- .NET SDK 6.0.100-preview.7,
+- WPF
 
 ### Ke stažení:
 
-- [Serio 0.2 (win-x86)](//github.com/ma-ta/serio/releases/download/v0.2.0-alpha/Serio_v0.2.0_win-x86.exe)
-- [Serio 0.2 (win-x64)](//github.com/ma-ta/serio/releases/download/v0.2.0-alpha/Serio_v0.2.0_win-x64.exe)
-- [Běhové prostředí .NET Runtime 5.0](//dotnet.microsoft.com/download/dotnet/current/runtime)
+- [Serio 0.2.1 (win-x64)](//github.com/ma-ta/serio/tree/main/src/bin/Release/net6.0-windows10.0.19041.0/publish/Serio.exe)
+- [Běhové prostředí .NET 6.0](//dotnet.microsoft.com/download/dotnet/6.0)
 
 ### Screenshot:
 
