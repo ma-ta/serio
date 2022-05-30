@@ -2,21 +2,22 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.2.1</Version>
+    <Version>0.2.2</Version>
     <Authors>Martin TÁBOR</Authors>
     <Company>Martin TÁBOR</Company>
     <Product>Serio</Product>
     <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageReleaseNotes>.NET SDK 6.0.100-preview.7
-VS Comunnity 2022 (x64) v17.0.0-preview.3</PackageReleaseNotes>
+    <PackageReleaseNotes>.NET SDK 6.0.300
+VS Comunnity 2022 v17.2.2</PackageReleaseNotes>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <Copyright>Martin TÁBOR</Copyright>
     <PackageLicenseExpression>CC BY-SA 4.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <MinimumPlatformVersion>7.0</MinimumPlatformVersion>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
