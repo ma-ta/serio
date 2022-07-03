@@ -1,6 +1,9 @@
 # SerIO
 > Jednoduchý sériový terminál (pro Arduino apod.)
 
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ma-ta/serio?include_prereleases)
+![GitHub](https://img.shields.io/github/license/ma-ta/serio)
+
 ### Použité technologie:
 
 - VS Community 2022 v17.2.2,
