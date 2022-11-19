@@ -34,10 +34,10 @@
             <LineBreak/>
             <Run FontWeight="Normal" Text="Licence:"/>
             <LineBreak/>
-            <Run Text="    "/><Image x:Name="imgGithub" Source="/github_32px.png" Height="32" Margin="0,10,0,-9" ToolTip="GitHub"/>
+            <Run Text="    "/><Image x:Name="imgGithub" Height="32" Margin="0,10,0,-9" ToolTip="GitHub" Source="/github_32px.png"/>
             <Run FontWeight="Normal" Text="  Freeware &amp; Open-source"/>
             <LineBreak/>
-            <Run Text="    "/><Image Source="/creative_commons_32px.png" Height="32" Margin="0,15,0,-9" ToolTip="Creative Commons"/>
+            <Run Text="    "/><Image Height="32" Margin="0,15,0,-9" ToolTip="GNU General Public License" Source="/copyright_32px.png"/>
             <Run x:Name="titleLicence" FontWeight="Medium" Text="  "/>
             <LineBreak/>
             <LineBreak/>

@@ -2,25 +2,26 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <TargetFramework>net7.0-windows10.0.22621.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.2.2</Version>
+    <Version>0.2.3</Version>
     <Authors>Martin TÁBOR</Authors>
     <Company>Martin TÁBOR</Company>
     <Product>Serio</Product>
     <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageReleaseNotes>.NET SDK 6.0.300
-VS Comunnity 2022 v17.2.2</PackageReleaseNotes>
+    <PackageReleaseNotes>.NET SDK 7.0.100
+VS Comunnity 2022 v17.4.1</PackageReleaseNotes>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <Copyright>Martin TÁBOR</Copyright>
-    <PackageLicenseExpression>CC BY-SA 4.0</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <MinimumPlatformVersion>7.0</MinimumPlatformVersion>
-    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="copyright_32px.png" />
     <None Remove="creative_commons_32px.png" />
     <None Remove="github_32px.png" />
     <None Remove="ikona.ico" />
@@ -29,10 +30,11 @@ VS Comunnity 2022 v17.2.2</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="5.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="copyright_32px.png" />
     <Resource Include="creative_commons_32px.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
