@@ -10,8 +10,8 @@
     <Product>Serio</Product>
     <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageReleaseNotes>.NET SDK 7.0.100
-VS Comunnity 2022 v17.4.1</PackageReleaseNotes>
+    <PackageReleaseNotes>VS Comunnity 2022 v17.5.1
+.NET SDK 7.0.201</PackageReleaseNotes>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <Copyright>Martin TÁBOR</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
