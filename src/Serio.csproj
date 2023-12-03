@@ -1,17 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows10.0.22621.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.2.3</Version>
+    <Version>0.2.4</Version>
     <Authors>Martin TÁBOR</Authors>
     <Company>Martin TÁBOR</Company>
     <Product>Serio</Product>
     <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageReleaseNotes>VS Comunnity 2022 v17.5.1
-.NET SDK 7.0.201</PackageReleaseNotes>
+    <PackageReleaseNotes>VS Comunnity 2022 v17.8.2
+.NET SDK 8.0.100</PackageReleaseNotes>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <Copyright>Martin TÁBOR</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
@@ -19,7 +18,6 @@
     <MinimumPlatformVersion>7.0</MinimumPlatformVersion>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="copyright_32px.png" />
     <None Remove="creative_commons_32px.png" />
@@ -28,11 +26,6 @@
     <None Remove="ikona_128px.png" />
     <None Remove="ikona_cb_128px.png" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="7.0.0" />
-  </ItemGroup>
-
   <ItemGroup>
     <Resource Include="copyright_32px.png" />
     <Resource Include="creative_commons_32px.png">
@@ -51,5 +44,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+  </ItemGroup>
 </Project>

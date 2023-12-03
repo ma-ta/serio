@@ -29,7 +29,7 @@
             <Run FontWeight="Normal" Text="Verze:"/>
             <LineBreak/>
             <Run x:Name="titleVerze" FontWeight="Normal" Text="    "/>
-            <Run FontWeight="Medium" Text="(α)"/>
+            <Run FontWeight="Medium" Text=""/>
             <LineBreak/>
             <LineBreak/>
             <Run FontWeight="Normal" Text="Licence:"/>
