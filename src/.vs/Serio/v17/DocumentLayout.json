@@ -1,12 +1,36 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\A\\Documents\\GitHub\\serio\\src\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\ma-ta\\Documents\\GitHub\\serio\\src\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{507EF84D-118C-47CE-A52B-D7F130795DB3}|Serio.csproj|c:\\users\\ma-ta\\documents\\github\\serio\\src\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{507EF84D-118C-47CE-A52B-D7F130795DB3}|Serio.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ma-ta\\Documents\\GitHub\\serio\\src\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\ma-ta\\Documents\\GitHub\\serio\\src\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-05-27T08:18:47.763Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
