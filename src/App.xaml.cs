@@ -18,7 +18,7 @@ namespace Serio
         public static string PODTITUL = "Sériový terminál";
         public static string AUTOR    = "Martin TÁBOR";
         public static string LICENCE  = "GNU GPLv3";
-        public static string VERZE    = "1.0.0  |  24.E27";  // YY.MDD
+        public static string VERZE    = "0.2.5  |  24.B15";  // YY.MDD
         public static string GITHUB   = "github.com/ma-ta/serio";
     }
 }

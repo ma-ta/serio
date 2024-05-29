@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Serio</id>
+    <version>0.2.5</version>
+    <authors>Martin TÁBOR</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">GPL-3.0-or-later</license>
+    <licenseUrl>https://licenses.nuget.org/GPL-3.0-or-later</licenseUrl>
+    <description>Jednoduchý sériový terminál (pro Arduino apod.)</description>
+    <releaseNotes>VS Comunnity 2022 v17.9.0
+.NET SDK 8.0.200</releaseNotes>
+    <copyright>Martin TÁBOR</copyright>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net8.0-windows10.0.22621">
+        <dependency id="System.IO.Ports" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows10.0.22621">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\ma-ta\Desktop\serio-0.2.5\src\bin\Release\net8.0-windows10.0.22621.0\Serio.runtimeconfig.json" target="lib\net8.0-windows10.0.22621\Serio.runtimeconfig.json" />
+    <file src="C:\Users\ma-ta\Desktop\serio-0.2.5\src\bin\Release\net8.0-windows10.0.22621.0\Serio.dll" target="lib\net8.0-windows10.0.22621\Serio.dll" />
+  </files>
+</package>
