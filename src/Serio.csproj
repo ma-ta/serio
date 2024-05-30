@@ -3,14 +3,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.2.5</Version>
+    <Version>0.2.6</Version>
     <Authors>Martin TÁBOR</Authors>
     <Company>Ma-TA</Company>
     <Product>Serio</Product>
     <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageReleaseNotes>VS Comunnity 2022 v17.9.0
-.NET SDK 8.0.200</PackageReleaseNotes>
+    <PackageReleaseNotes>VS Comunnity 2022 v17.10.1
+.NET SDK 8.0.300</PackageReleaseNotes>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <Copyright>Martin TÁBOR</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
