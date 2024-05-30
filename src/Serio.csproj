@@ -10,7 +10,7 @@
     <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
     <PackageReleaseNotes>VS Comunnity 2022 v17.10.1
-.NET SDK 8.0.300</PackageReleaseNotes>
+.NET SDK 8.0.301</PackageReleaseNotes>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <Copyright>Martin TÁBOR</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
