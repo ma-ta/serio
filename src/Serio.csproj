@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <Version>1.0.0</Version>
     <Authors>Martin TÁBOR</Authors>
@@ -9,8 +9,8 @@
     <Product>Serio</Product>
     <Description>Jednoduchý sériový terminál (pro Arduino apod.)</Description>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageReleaseNotes>VS Comunnity 2022 v17.11.3
-.NET SDK 8.0.400</PackageReleaseNotes>
+    <PackageReleaseNotes>VS Comunnity 2022 v17.12.0
+.NET SDK 9.0.100</PackageReleaseNotes>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <Copyright>Martin TÁBOR</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
@@ -45,6 +45,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+    <PackageReference Include="System.IO.Ports" />
   </ItemGroup>
 </Project>

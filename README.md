@@ -6,8 +6,8 @@
 
 ### Použité technologie:
 
-- VS Community 2022 v17.11.3,
-- .NET SDK 8.0.400,
+- VS Community 2022 v17.12.0,
+- .NET SDK 9.0.100,
 - WPF
 
 ### Ke stažení:
