@@ -8,7 +8,7 @@
         <beforeApplicationStartup />
       </update>
     </subscription>
-    <deploymentProvider codebase="https://github.com/ma-ta/serio/tree/main/clickonce/Serio.application" />
+    <deploymentProvider codebase="https://github.com/ma-ta/serio/blob/main/clickonce/Serio.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
@@ -21,7 +21,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zInOV9ky7TwexmsTJVySlEvrJWqT9/VflqFOFXtHrrg=</dsig:DigestValue>
+        <dsig:DigestValue>0uTtk9J9tjjMlsa9mYnmnZVeVqUH9KhNFj1w4B3J8Cc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

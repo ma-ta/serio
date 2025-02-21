@@ -243,22 +243,22 @@
       <dsig:DigestValue>Hu3XSwJS14tLDfGQ4xGyvyGrAimuXm9YFDuYXSAhXoY=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Serio.dll" size="301056">
+  <file name="Serio.dll" size="300544">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>6wxiYGaPHCMJ6a90umZuea12dgVwsydmhBe0gfSBeeY=</dsig:DigestValue>
+      <dsig:DigestValue>GbQaycXvrQVuoeHOiQNJ68BBAHU5cD9Kb+pX+IxKU14=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Serio.exe" size="371712">
+  <file name="Serio.exe" size="371200">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>XEuxzf77vw/UuOhKUkre7ayOnFNAb4sJDGNYgpYQAb0=</dsig:DigestValue>
+      <dsig:DigestValue>OZORasr4d/iBvJpMUCRYZcQ+xsn6312Lh32kvLNoplI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Serio.runtimeconfig.json" size="516">
