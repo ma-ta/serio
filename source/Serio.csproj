@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <Title>Serio</Title>
+    <Authors>Martin TÁBOR</Authors>
+    <Description>Jednoduchý terminál sériového portu (pro Arduino apod.)</Description>
+    <Copyright>GPL-3.0-or-later</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIcon>ikona_128px.png</PackageIcon>
+    <RepositoryUrl>https://github.com/ma-ta/serio</RepositoryUrl>
+    <ApplicationIcon>ikona.ico</ApplicationIcon>
+    <NeutralLanguage>cs-CZ</NeutralLanguage>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Version>$(PackageVersion)</Version>
+    <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
+    <FileVersion>$(PackageVersion)</FileVersion>
+    <InformationalVersion>$(PackageVersion)</InformationalVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="copyright_32px.png" />
+    <None Remove="github_32px.png" />
+    <None Remove="ikona_128px.png" />
+    <None Remove="ikona_cb_128px.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ikona.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="copyright_32px.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="github_32px.png" />
+    <Resource Include="ikona_128px.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ikona_cb_128px.png" />
+  </ItemGroup>
+
+</Project>
