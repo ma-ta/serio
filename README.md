@@ -15,9 +15,9 @@
 
 SerIO v1.0.0 pro platformy:
 
-- [Windows (x86)](//github.com/ma-ta/serio/releases/download/v1.0.0/Serio-x86.exe)
-- [Windows (x64)](//github.com/ma-ta/serio/releases/download/v1.0.0/Serio-x64.exe)
-- [Windows (arm64)](//github.com/ma-ta/serio/releases/download/v1.0.0/Serio-arm64.exe)
+- [Windows (x86)](//github.com/ma-ta/serio/releases/download/latest/Serio-x86.exe)
+- [Windows (x64)](//github.com/ma-ta/serio/releases/download/latest/Serio-x64.exe)
+- [Windows (arm64)](//github.com/ma-ta/serio/releases/download/latest/Serio-arm64.exe)
 - [Běhové prostředí .NET](//dotnet.microsoft.com/download/dotnet/current/runtime)
 
 ### Screenshot:
