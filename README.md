@@ -5,6 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/ma-ta/serio)
 
 ### Použité technologie:
+
 **Vyžaduje [.NET 8.0 Runtime (LTS)](//dotnet.microsoft.com/en-us/download/dotnet/8.0/runtime)**
 - VS Community 2022 v17.13.6,
 - .NET SDK 9.0.203,
