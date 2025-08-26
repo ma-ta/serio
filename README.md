@@ -7,9 +7,9 @@
 ### Použité technologie:
 
 **Vyžaduje [.NET 8.0 Runtime (LTS)](//dotnet.microsoft.com/en-us/download/dotnet/8.0/runtime)**
-- VS Community 2022 v17.14.0,
-- .NET SDK 9.0.300,
-- Windows SDK 10.0.26100.3916,
+- VS Community 2022 v17.14.13,
+- .NET SDK 9.0.304,
+- Windows SDK 10.0.26100.4654,
 - WPF
 
 ### Ke stažení:
