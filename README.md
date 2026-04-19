@@ -9,7 +9,7 @@
 **Vyžaduje [.NET SDK 10.0 (LTS)](//dotnet.microsoft.com/en-us/download)**
 - VS Community 2026 v18.5.0,
 - .NET SDK 10.0.202,
-- Windows SDK 10.0.26100.7705,
+- Windows SDK 10.0.28000.1721,
 - WPF
 
 ### Ke stažení:
