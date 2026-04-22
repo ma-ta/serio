@@ -15,7 +15,7 @@ public partial class App : Application
     public static string PODTITUL = "Sériový terminál";
     public static string AUTOR = "Martin TÁBOR";
     public static string LICENCE = "GNU GPLv3+";
-    public static string VERZE = "1.0.0  |  2026-04-19";
+    public static string VERZE = "1.0.0  |  2026-04-22";
     public static string GITHUB = "github.com/ma-ta/serio";
     public static string DOTNET_INFO = RuntimeInformation.FrameworkDescription;
     public static string ARCH_INFO = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
