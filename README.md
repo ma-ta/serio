@@ -7,9 +7,8 @@
 ### Použité technologie:
 
 **Vyžaduje [.NET SDK 10.0 (LTS)](//dotnet.microsoft.com/en-us/download)**
-- VS Community 2026 v18.5.1,
-- .NET SDK 10.0.202,
-- Windows SDK 10.0.26100.8038,
+- VS Community 2026 v18.5.2,
+- .NET SDK 10.0.203,
 - WPF
 
 ### Ke stažení:
