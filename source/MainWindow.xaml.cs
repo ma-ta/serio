@@ -20,6 +20,9 @@ public partial class MainWindow : Window
     SolidColorBrush barvaCervena = new(Color.FromArgb(0xFF, 0xE8, 0x11, 0x23)); // #FFE81123
 
     // inicializace konstant a proměnných
+    string[] baudy = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
+    int vychoziPolozka_comboBox_BaudRate = 11;  // 115200
+    
     public String nazevAplikace = App.NAZEV;
     public String podTitul = App.PODTITUL;
     public String autor = App.AUTOR;
@@ -47,11 +50,11 @@ public partial class MainWindow : Window
         casovac1.Tick += new EventHandler(casovac1_Tick);
         casovac1.Start();
 
-        string[] baudy = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
         foreach (string rychlost in baudy)
         {
-            comboBox_BuadRate.Items.Add(rychlost);
+            comboBox_BaudRate.Items.Add(rychlost);
         }
+        comboBox_BaudRate.SelectedIndex = vychoziPolozka_comboBox_BaudRate;
         dostupnePorty1 = SerialPort.GetPortNames();
         foreach (string port in dostupnePorty1)
         {
@@ -115,7 +118,7 @@ public partial class MainWindow : Window
             if (comboBox_Port.SelectedItem != null)
             {
 
-                bd = comboBox_BuadRate.SelectedItem.ToString();
+                bd = comboBox_BaudRate.SelectedItem.ToString();
                 port = comboBox_Port.SelectedItem.ToString();
 
                 prvniSP.BaudRate = Int32.Parse(bd);
@@ -135,7 +138,7 @@ public partial class MainWindow : Window
 
                     button_StartStop.Content = "Stop";
                     rectangle_Status.Fill = barvaZelena;
-                    comboBox_BuadRate.IsEnabled = false;
+                    comboBox_BaudRate.IsEnabled = false;
                     comboBox_Port.IsEnabled = false;
                     casovac1.Stop();
 
@@ -164,7 +167,7 @@ public partial class MainWindow : Window
 
             button_StartStop.Content = "Start";
             rectangle_Status.Fill = barvaCervena;
-            comboBox_BuadRate.IsEnabled = true;
+            comboBox_BaudRate.IsEnabled = true;
             comboBox_Port.IsEnabled = true;
             casovac1.Start();
 
