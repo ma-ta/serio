@@ -17,7 +17,7 @@
     <RepositoryUrl>https://github.com/ma-ta/serio</RepositoryUrl>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Version>$(PackageVersion)</Version>
     <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
     <FileVersion>$(PackageVersion)</FileVersion>
