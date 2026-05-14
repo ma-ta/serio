@@ -15,7 +15,7 @@
 
 > Vyžaduje Windows 11+ (verze 24H2, build 26100)
 
-SerIO v1.0.0 pro platformy:
+SerIO v1.0.1 pro platformy:
 
 - [Windows (x86)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x86.exe)
 - [Windows (x64)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x64.exe)
