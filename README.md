@@ -7,8 +7,8 @@
 ### Použité technologie:
 
 **Vyžaduje [.NET SDK 10.0 (LTS)](//dotnet.microsoft.com/en-us/download)**
-- VS Community 2026 v18.5.2,
-- .NET SDK 10.0.203,
+- VS Community 2026 v18.6.0,
+- .NET SDK 10.0.300,
 - WPF
 
 ### Ke stažení:
@@ -17,10 +17,10 @@
 
 SerIO v1.0.0 pro platformy:
 
-- [Windows (x86)](//github.com/ma-ta/serio/releases/download/v1.0.0/Serio-x86.exe)
-- [Windows (x64)](//github.com/ma-ta/serio/releases/download/v1.0.0/Serio-x64.exe)
-- [Windows (arm64)](//github.com/ma-ta/serio/releases/download/v1.0.0/Serio-arm64.exe)
-- [Běhové prostředí .NET](//dotnet.microsoft.com/en-us/download/dotnet/8.0/runtime)
+- [Windows (x86)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x86.exe)
+- [Windows (x64)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x64.exe)
+- [Windows (arm64)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-arm64.exe)
+- [Běhové prostředí .NET](//dotnet.microsoft.com/en-us/download/dotnet/10.0/runtime)
 
 ### Screenshot:
 
