@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.IO.Ports;
 using System.IO;
 using Microsoft.Win32;
+using System.Windows.Input;
 
 namespace Serio;
 
@@ -20,15 +21,15 @@ public partial class MainWindow : Window
     SolidColorBrush barvaCervena = new(Color.FromArgb(0xFF, 0xE8, 0x11, 0x23)); // #FFE81123
 
     // inicializace konstant a proměnných
-    string[] baudy = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
-    int vychoziPolozka_comboBox_BaudRate = 11;  // 115200
+    readonly string[] baudy = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
+    const int vychoziPolozka_comboBox_BaudRate = 11;  // 115200
     
-    public String nazevAplikace = App.NAZEV;
-    public String podTitul = App.PODTITUL;
-    public String autor = App.AUTOR;
-    public String email = App.GITHUB;
-    public String verzeAplikace = App.VERZE;
-    public String aktualniRok = DateTime.Now.Year.ToString();
+    public readonly String nazevAplikace = App.NAZEV;
+    public readonly String podTitul = App.PODTITUL;
+    public readonly String autor = App.AUTOR;
+    public readonly String email = App.GITHUB;
+    public readonly String verzeAplikace = App.VERZE;
+    public readonly String aktualniRok = DateTime.Now.Year.ToString();
 
     public delegate void NoArgDelegate();
     public bool status = false;
@@ -42,11 +43,17 @@ public partial class MainWindow : Window
 
     public MainWindow()
     {
+        barvaBila.Freeze();
+        barvaModra1.Freeze();
+        barvaModra2.Freeze();
+        barvaZelena.Freeze();
+        barvaCervena.Freeze();
+
         InitializeComponent();
 
         this.Title = nazevAplikace;
 
-        casovac1.Interval = new TimeSpan(0, 0, 0, 2, 500);
+        casovac1.Interval = new TimeSpan(0, 0, 0, 5, 000);
         casovac1.Tick += new EventHandler(casovac1_Tick);
         casovac1.Start();
 
@@ -100,7 +107,7 @@ public partial class MainWindow : Window
                 else if (MenuCheckboxCRLFPrijate.IsChecked)
                 {
 
-                    textBox_In.Text += (/*detail + */zprava + "\n");
+                    textBox_In.AppendText(/*detail + */zprava + "\n");
                 }
                 //textBox_In.Focus();
                 textBox_In.CaretIndex = textBox_In.Text.Length;
@@ -127,8 +134,11 @@ public partial class MainWindow : Window
                 prvniSP.StopBits = StopBits.One;
                 prvniSP.DataBits = 8;
                 prvniSP.Handshake = Handshake.None;
-                prvniSP.RtsEnable = true;
-                prvniSP.WriteTimeout = 3000;
+                prvniSP.RtsEnable = false;
+                prvniSP.DtrEnable = false;
+                prvniSP.ReadTimeout = 500;
+                prvniSP.WriteTimeout = 500;
+                prvniSP.Encoding = System.Text.Encoding.UTF8;
 
                 prvniSP.DataReceived += new SerialDataReceivedEventHandler(PrichoziData);
 
@@ -163,7 +173,9 @@ public partial class MainWindow : Window
         }
         else if (status == true)
         {
+            prvniSP.DataReceived -= PrichoziData;
             prvniSP.Close();
+            prvniSP.Dispose();
 
             button_StartStop.Content = "Start";
             rectangle_Status.Fill = barvaCervena;
@@ -275,6 +287,7 @@ public partial class MainWindow : Window
                 if (status == true)
                 {
                     prvniSP.Close();
+                    prvniSP.Dispose();
                 }
                 Application.Current.Shutdown();
                 break;
@@ -301,7 +314,7 @@ public partial class MainWindow : Window
 
     private void Window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
-        if (e.Key.ToString() == "F5")
+        if (e.Key == Key.F5)
         {
             button_StartStop_Click(sender, e);
         }

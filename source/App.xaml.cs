@@ -11,12 +11,12 @@ namespace Serio;
 public partial class App : Application
 {
     // programové konstanty
-    public static string NAZEV = "Serio";
-    public static string PODTITUL = "Sériový terminál";
-    public static string AUTOR = "Martin TÁBOR";
-    public static string LICENCE = "GNU GPLv3+";
-    public static string VERZE = "1.0.1  |  2026-05-14";
-    public static string GITHUB = "github.com/ma-ta/serio";
-    public static string DOTNET_INFO = RuntimeInformation.FrameworkDescription;
-    public static string ARCH_INFO = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
+    public static readonly string NAZEV = "Serio";
+    public static readonly string PODTITUL = "Sériový terminál";
+    public static readonly string AUTOR = "Martin TÁBOR";
+    public static readonly string LICENCE = "GNU GPLv3";
+    public static readonly string VERZE = "1.0.1  |  2026-05-27";
+    public static readonly string GITHUB = "github.com/ma-ta/serio";
+    public static readonly string DOTNET_INFO = RuntimeInformation.FrameworkDescription;
+    public static readonly string ARCH_INFO = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
 }
