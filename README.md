@@ -14,13 +14,13 @@
 ### Ke stažení:
 
 > Vyžaduje Windows 11+ (verze 24H2, build 26100)
+- [Běhové prostředí .NET](//dotnet.microsoft.com/en-us/download/dotnet/10.0/runtime)
 
 SerIO v1.0.1 pro platformy:
 
-- [Windows (x86)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x86.exe)
-- [Windows (x64)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x64.exe)
-- [Windows (arm64)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-arm64.exe)
-- [Běhové prostředí .NET](//dotnet.microsoft.com/en-us/download/dotnet/10.0/runtime)
+- [Windows 11 (64-bit)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x64.exe)
+- [Windows 11 (ARM64/AArch64)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-arm64.exe)
+- [Windows 7+ (32-bit)](//github.com/ma-ta/serio/releases/download/v1.0.1/Serio-x86.exe)&nbsp;&nbsp;&ndash;&nbsp;&nbsp;(min. Windows 7 s [.NET 6.0](//dotnet.microsoft.com/en-us/download/dotnet/6.0))
 
 ### Screenshot:
 
