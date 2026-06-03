@@ -10,14 +10,14 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <Title>Serio</Title>
     <Authors>Martin TÁBOR</Authors>
-    <Description>Jednoduchý terminál sériového portu (pro Arduino apod.)</Description>
+    <Description>Jednoduchý terminál sériového portu (pro Arduino, ESP32 apod.)</Description>
     <Copyright>GPL-3.0-or-later</Copyright>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageIcon>ikona_128px.png</PackageIcon>
     <RepositoryUrl>https://github.com/ma-ta/serio</RepositoryUrl>
     <ApplicationIcon>ikona.ico</ApplicationIcon>
     <NeutralLanguage>cs-CZ</NeutralLanguage>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Version>$(PackageVersion)</Version>
     <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
     <FileVersion>$(PackageVersion)</FileVersion>
