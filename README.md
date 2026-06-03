@@ -24,4 +24,4 @@ SerIO v1.1.0 pro platformy:
 
 ### Screenshot:
 
-![Screenshot aplikace Serio v1.0](/serio_v1.1.png)
+![Screenshot aplikace Serio v1.1](/serio-v1.1.png)
