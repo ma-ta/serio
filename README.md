@@ -1,5 +1,5 @@
 # SerIO
-> Jednoduchý terminál sériového portu (pro Arduino apod.)
+> Jednoduchý terminál sériového portu (pro Arduino, ESP32 apod.)
 
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ma-ta/serio?include_prereleases)
 ![GitHub](https://img.shields.io/github/license/ma-ta/serio)
