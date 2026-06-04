@@ -30,7 +30,7 @@ namespace Serio
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // zavře okno po stisknutí Esc
-            if (e.Key.ToString() == "Escape")
+            if (e.Key == Key.Escape)
                 this.Close();
         }
 
