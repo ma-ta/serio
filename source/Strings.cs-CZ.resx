@@ -223,7 +223,7 @@
     <value>Licence</value>
   </data>
   <data name="WindowAboutRepoCopy" xml:space="preserve">
-    <value>Zkopírovat adresu</value>
+    <value>Kopírovat adresu</value>
   </data>
   <data name="WindowAboutRepo" xml:space="preserve">
     <value>Repozitář</value>
