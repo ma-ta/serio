@@ -6,21 +6,23 @@ using System.Windows.Media.Imaging;
 namespace Serio
 {
     /// <summary>
-    /// Interaction logic for WindowOAplikaci.xaml
+    /// Interaction logic for WindowAbout.xaml
     /// </summary>
-    public partial class WindowOAplikaci : Window
+    public partial class WindowAbout : Window
     {
-        public WindowOAplikaci()
+        public WindowAbout()
         {
             InitializeComponent();
 
-            // nastavení popisků okna OAplikaci
-            titleNazev.Text = "SerIO";
-            titleVerze.Text += App.VERZE;
-            titleArch.Text += App.DOTNET_INFO + " (" + App.ARCH_INFO + ")";
-            imgGithub.ToolTip += " – " + App.GITHUB;
-            titleLicence.Text += App.LICENCE;
-            titleAutor.Text += String.Format("–{0}  {1}", DateTime.Now.Year, App.AUTOR);
+            // nastavení popisků okna winAbout
+            labelTitle.Text = "SerIO";
+            labelVersion.Text += App.VERSION;
+            labelArch.Text += App.DOTNET_INFO + " (" + App.ARCH_INFO + ")";
+            labelLicense.Text += App.LICENSE;
+            labelLicense.ToolTip = App.LICENSE_LONG;
+            labelRepo.Text += App.GITHUB;
+            windowAboutRepoLink.NavigateUri = new System.Uri("https://" + App.GITHUB);
+            labelAuthor.Text += String.Format("–{0}  {1}", DateTime.Now.Year, App.AUTHOR);
 
             // nastavení časovače pro EasterEgg
             casovacEgg.Interval = new TimeSpan(0, 0, 0, 0, 350); // interval blikání [ms]
@@ -76,6 +78,11 @@ namespace Serio
                 eggZmena = false;
             }
 
+        }
+
+        private void windowAboutRepoLink_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(App.GITHUB);
         }
 
         // </EasterEgg>

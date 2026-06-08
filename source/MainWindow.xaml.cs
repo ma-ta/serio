@@ -24,13 +24,6 @@ public partial class MainWindow : Window
     private readonly string[] baudy = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
     private const int vychoziPolozka_comboBox_BaudRate = 11;  // 115200
     
-    private readonly String nazevAplikace = App.NAZEV;
-    private readonly String podTitul = App.PODTITUL;
-    private readonly String autor = App.AUTOR;
-    private readonly String email = App.GITHUB;
-    private readonly String verzeAplikace = App.VERZE;
-    private readonly String aktualniRok = DateTime.Now.Year.ToString();
-
     private delegate void NoArgDelegate();
     private bool status = false;
     private string port;
@@ -51,7 +44,7 @@ public partial class MainWindow : Window
         // Registrace pro případ náhlého ukončení procesu
         AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
 
-        this.Title = nazevAplikace;
+        this.Title = App.TITLE;
 
         casovac1.Interval = new TimeSpan(0, 0, 0, 5, 000);
         casovac1.Tick += new EventHandler(casovac1_Tick);
@@ -85,7 +78,7 @@ public partial class MainWindow : Window
             dostupnePorty1 = dostupnePorty;
 
             // DEBUG
-            //textBox_Out.AppendText("Změna portů\n");
+            //textBox_Tx.AppendText("Změna portů\n");
         }
 
     }
@@ -100,19 +93,19 @@ public partial class MainWindow : Window
 
                 //string detail = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "\n";
 
-                if (!MenuCheckboxCRLFPrijate.IsChecked)
+                if (!MenuCheckboxWrapRx.IsChecked)
                 {
-                    textBox_In.AppendText(/*detail + */zprava);
+                    textBox_Rx.AppendText(/*detail + */zprava);
                 }
-                else if (MenuCheckboxCRLFPrijate.IsChecked)
+                else if (MenuCheckboxWrapRx.IsChecked)
                 {
 
-                    textBox_In.AppendText(/*detail + */zprava.TrimEnd('\r', '\n') + Environment.NewLine);
+                    textBox_Rx.AppendText(/*detail + */zprava.TrimEnd('\r', '\n') + Environment.NewLine);
                 }
-                //textBox_In.Focus();
-                textBox_In.CaretIndex = textBox_In.Text.Length;
-                textBox_In.ScrollToEnd();
-                //textBox_Vstup.Focus();
+                //textBox_Rx.Focus();
+                textBox_Rx.CaretIndex = textBox_Rx.Text.Length;
+                textBox_Rx.ScrollToEnd();
+                //textBox_Input.Focus();
             }
         );
     }
@@ -150,60 +143,60 @@ public partial class MainWindow : Window
                 {
                     prvniSP.Open();
 
-                    button_StartStop.Content = "S_top";
+                    button_StartStop.Content = Strings.ButtonStartStopStop;
                     rectangle_Status.Fill = barvaZelena;
                     comboBox_Port.IsEnabled = false;
                     casovac1.Stop();
 
-                    textBox_In.IsEnabled = true;
-                    textBox_Out.IsEnabled = true;
-                    textBox_Vstup.IsEnabled = true;
-                    button_Odeslat.IsEnabled = true;
-                    rectangle_Status.ToolTip = "Port OTEVŘEN\n• 8 data bits\n• No parity\n• 1 stop bit\n• No Handshake";
-                    button_StartStop.ToolTip = "Zavře port (F5)";
-                    textBox_Vstup.Focus();
+                    textBox_Rx.IsEnabled = true;
+                    textBox_Tx.IsEnabled = true;
+                    textBox_Input.IsEnabled = true;
+                    button_Send.IsEnabled = true;
+                    rectangle_Status.ToolTip = Strings.StatusOpen + "\n• 8 data bits\n• No parity\n• 1 stop bit\n• No Handshake";
+                    button_StartStop.ToolTip = Strings.ButtonStartStopToolTipStop;
+                    textBox_Input.Focus();
 
                     status = true;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Chyba", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show(ex.Message, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("Zvolte číslo portu.", "Upozornění", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Strings.ChoosePort, Strings.Warning, MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         else if (status == true)
         {
             zavriPort();
 
-            button_StartStop.Content = "S_tart";
+            button_StartStop.Content = Strings.ButtonStartStopStart;
             rectangle_Status.Fill = barvaCervena;
             comboBox_Port.IsEnabled = true;
             casovac1.Start();
 
-            textBox_Vstup.IsEnabled = false;
-            button_Odeslat.IsEnabled = false;
-            rectangle_Status.ToolTip = "Port není otevřen";
-            button_StartStop.ToolTip = "Otevře port (F5)";
+            textBox_Input.IsEnabled = false;
+            button_Send.IsEnabled = false;
+            rectangle_Status.ToolTip = Strings.StatusClosed;
+            button_StartStop.ToolTip = Strings.ButtonStartStopToolTipStart;
 
             status = false;
         }
     }
 
-    private void button_Odeslat_Click(object sender, RoutedEventArgs e)
+    private void button_Send_Click(object sender, RoutedEventArgs e)
     {
         if (status == true)
         {
-            string vstup = textBox_Vstup.Text;
+            string vstup = textBox_Input.Text;
 
-            if (MenuCheckboxCR.IsChecked)
+            if (MenuCheckboxWrapCRTx.IsChecked)
             {
                 vstup += "\r";
             }
-            if (MenuCheckboxLF.IsChecked)
+            if (MenuCheckboxWrapLFTx.IsChecked)
             {
                 vstup += "\n";
             }
@@ -214,20 +207,20 @@ public partial class MainWindow : Window
                 {
                     prvniSP.Write(vstup);
                     //string detail = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "\n";
-                    textBox_Vstup.Clear();
-                    textBox_Out.Foreground = barvaModra2;
+                    textBox_Input.Clear();
+                    textBox_Tx.Foreground = barvaModra2;
 
-                    textBox_Out.AppendText(/*detail + */vstup/* + "\n"*/);
+                    textBox_Tx.AppendText(/*detail + */vstup/* + "\n"*/);
 
-                    textBox_Out.Focus();
-                    textBox_Out.CaretIndex = textBox_Out.Text.Length;
-                    textBox_Out.ScrollToEnd();
+                    textBox_Tx.Focus();
+                    textBox_Tx.CaretIndex = textBox_Tx.Text.Length;
+                    textBox_Tx.ScrollToEnd();
                 }
                 catch (Exception ex)
                 {
-                    string detail = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " VÝJIMKA:\n";
-                    textBox_Out.Foreground = barvaCervena;
-                    textBox_Out.AppendText(detail + ex.Message + "\n\n");
+                    string detail = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " " + Strings.Exception.ToUpper() + ":\n";
+                    textBox_Tx.Foreground = barvaCervena;
+                    textBox_Tx.AppendText(detail + ex.Message + "\n\n");
 
                     if (ex is InvalidOperationException)
                     {
@@ -236,7 +229,7 @@ public partial class MainWindow : Window
                 }
             }
 
-            textBox_Vstup.Focus();
+            textBox_Input.Focus();
         }
     }
 
@@ -245,22 +238,22 @@ public partial class MainWindow : Window
     // MENU - Soubor - Export do *.txt
     private void export_Click(object sender, RoutedEventArgs e)
     {
-        if ((textBox_In.Text != "") || (textBox_Out.Text != ""))
+        if ((textBox_Rx.Text != "") || (textBox_Tx.Text != ""))
         {
             try
             {
                 const String ohraniceni = "####################################";
-                String cas = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                String exportString = "## Log vytvořen: " + cas + Environment.NewLine;
-                exportString += ohraniceni + Environment.NewLine + "## PŘIJATO (Rx):" + Environment.NewLine + ohraniceni + Environment.NewLine;
-                exportString += textBox_In.Text;
-                exportString += Environment.NewLine + ohraniceni + Environment.NewLine + "## ODESLÁNO (Tx):" + Environment.NewLine + ohraniceni + Environment.NewLine;
-                exportString += textBox_Out.Text;
+                String cas = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                String exportString = "## " + Strings.LogCreated + ": " + cas + Environment.NewLine;
+                exportString += ohraniceni + Environment.NewLine + "## " + Strings.Received.ToUpper() + " (Rx):" + Environment.NewLine + ohraniceni + Environment.NewLine;
+                exportString += textBox_Rx.Text;
+                exportString += Environment.NewLine + ohraniceni + Environment.NewLine + "## " + Strings.Sent.ToUpper() + " (Tx):" + Environment.NewLine + ohraniceni + Environment.NewLine;
+                exportString += textBox_Tx.Text;
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Textový soubor (*.txt)|*.txt|Bez přípony|*.*";
-                saveFileDialog.Title = "Export";
-                saveFileDialog.FileName = nazevAplikace.ToLower() + "-log";
+                saveFileDialog.Filter = Strings.TextFile + " (*.txt)|*.txt|" + Strings.AllFiles + "|*.*";
+                saveFileDialog.Title = Strings.Export;
+                saveFileDialog.FileName = App.TITLE.ToLower() + "-" + Strings.Log;
                 if (saveFileDialog.ShowDialog() == true)
                     File.WriteAllText(saveFileDialog.FileName, exportString);
             }
@@ -268,21 +261,21 @@ public partial class MainWindow : Window
             {
                 MessageBox.Show(
                                 ex.Message,
-                                "Chyba",
+                                Strings.Error,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Exclamation);
             }
         }
         else
         {
-            MessageBox.Show("Není co uložit.\nPřijměte či odešlete nějaká data.", "Export", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(Strings.DialogNothingToExport1 + "\n" + Strings.DialogNothingToExport2, Strings.Warning, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
     // MENU - Soubor - Ukončit
     private void exit_Click(object sender, RoutedEventArgs e)
     {
-        MessageBoxResult result = MessageBox.Show("Přejete si aplikaci ukončit?", "Konec", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+        MessageBoxResult result = MessageBox.Show(Strings.DialogQuit, Strings.Quit, MessageBoxButton.OKCancel, MessageBoxImage.Warning);
         switch (result)
         {
             case MessageBoxResult.OK:
@@ -295,11 +288,11 @@ public partial class MainWindow : Window
     // MENU - Nástroje
     private void smazatPrijate_Click(object sender, RoutedEventArgs e)
     {
-        textBox_In.Clear();
+        textBox_Rx.Clear();
     }
     private void smazatOdeslane_Click(object sender, RoutedEventArgs e)
     {
-        textBox_Out.Clear();
+        textBox_Tx.Clear();
     }
 
     // MENU - Port
@@ -329,9 +322,9 @@ public partial class MainWindow : Window
     // MENU - Nápověda
     private void about_Click(object sender, RoutedEventArgs e)
     {
-        WindowOAplikaci oAplikaci = new WindowOAplikaci();
-        oAplikaci.Owner = Application.Current.MainWindow;
-        oAplikaci.ShowDialog();
+        WindowAbout winAbout = new WindowAbout();
+        winAbout.Owner = Application.Current.MainWindow;
+        winAbout.ShowDialog();
     }
 
 
@@ -383,5 +376,15 @@ public partial class MainWindow : Window
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
         zavriPort();
+    }
+
+    private void MenuCheckboxOnTop_Click(object sender, RoutedEventArgs e)
+    {
+        if (MenuCheckboxOnTop.IsChecked) {
+            this.Topmost = true;
+        }
+        else {
+            this.Topmost = false;
+        }
     }
 }

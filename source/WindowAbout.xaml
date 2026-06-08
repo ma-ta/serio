@@ -1,11 +1,12 @@
-﻿<Window x:Class="Serio.WindowOAplikaci"
+﻿<Window x:Class="Serio.WindowAbout"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Serio"
         mc:Ignorable="d"
-        Title="O aplikaci" Height="350" Width="500" Background="#FF1E2023" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
+        xmlns:res="clr-namespace:Serio"
+        Title="{x:Static res:Strings.WindowAboutTitle}" Height="350" Width="500" Background="#FF1E2023" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -23,28 +24,30 @@
             </Image.RenderTransform>
         </Image>
         <TextBlock Grid.Column="45" Padding="0" FontSize="15" Foreground="#FFF2FFFF" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0">
-            <Run x:Name="titleNazev" FontWeight="Bold" FontSize="20" Text=""/>
+            <Run x:Name="labelTitle" FontWeight="Bold" FontSize="20" Text=""/>
             <LineBreak/>
             <LineBreak/>
-            <Run FontWeight="Normal" Text="Verze:"/>
+            <Run FontWeight="Normal" Text="{x:Static res:Strings.WindowAboutVersion}"/><Run Text=":" />
             <LineBreak/>
-            <Run x:Name="titleVerze" FontWeight="Normal" Text="    "/>
+            <Run x:Name="labelVersion" FontWeight="Normal" Text="    "/>
             <Run FontWeight="Medium" Text=""/>
             <LineBreak/>
-            <Run x:Name="titleArch" FontWeight="Normal" Text="    "/>
+            <Run x:Name="labelArch" FontWeight="Normal" Text="    "/>
             <Run FontWeight="Medium" Text=""/>
             <LineBreak/>
             <LineBreak/>
-            <Run FontWeight="Normal" Text="Licence:"/>
+            <Run FontWeight="Normal" Text="{x:Static res:Strings.WindowAboutLicense}" /><Run Text=":" />
             <LineBreak/>
-            <Run Text="    "/><Image x:Name="imgGithub" Height="32" Margin="0,10,0,-9" ToolTip="GitHub" Source="/github_32px.png"/>
-            <Run FontWeight="Normal" Text="  Freeware &amp; open source"/>
+            <Run Text="    "/><Image Height="32" Margin="0,10,0,-9" ToolTip="{x:Static res:Strings.WindowAboutLicense}" Source="/copyright_32px.png"/>
+            <Run x:Name="labelLicense" FontWeight="Medium" Text="  " />
             <LineBreak/>
-            <Run Text="    "/><Image Height="32" Margin="0,15,0,-9" ToolTip="GNU General Public License" Source="/copyright_32px.png"/>
-            <Run x:Name="titleLicence" FontWeight="Medium" Text="  "/>
+            <Run Text="    "/><Image x:Name="imgRepo" Height="32" Margin="0,15,0,-9" ToolTip="{x:Static res:Strings.WindowAboutRepo}" Source="/github_32px.png" />
+            <Run Text="  " /><Hyperlink x:Name="windowAboutRepoLink" Click="windowAboutRepoLink_Click" TextDecorations="Underline" Foreground="#FFF2FFFF">
+            <Run x:Name="labelRepo" FontWeight="Normal" ToolTip="{x:Static res:Strings.WindowAboutRepoCopy}" />
+            </Hyperlink>
             <LineBreak/>
             <LineBreak/>
-            <Run x:Name="titleAutor" FontWeight="Normal" Text="    © 2018"/>
+            <Run x:Name="labelAuthor" FontWeight="Normal" Text="    © 2018"/>
         </TextBlock>
     </Grid>
 </Window>
