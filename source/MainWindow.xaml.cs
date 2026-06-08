@@ -91,7 +91,7 @@ public partial class MainWindow : Window
                 SerialPort sp = (SerialPort)sender;
                 string zprava = sp.ReadExisting();
 
-                //string detail = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "\n";
+                //string detail = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n";
 
                 if (!MenuCheckboxWrapRx.IsChecked)
                 {
