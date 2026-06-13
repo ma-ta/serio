@@ -45,8 +45,19 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{x:Static res:Strings.MainMenuTools}" Foreground="#FFF2FFFF">
-                    <MenuItem Foreground="Black" x:Name="MenuCheckboxOnTop" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxOnTop}" IsChecked="True" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxOnTopToolTip}" Click="MenuCheckboxOnTop_Click" Margin="2,0,0,1" />
+                    <!-- Copy Rx & Tx -->
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsCopyRx}" ToolTip="{x:Static res:Strings.MainMenuToolsCopyRxToolTip}" Click="copyRx_Click" Margin="2,0,0,1">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xF0E3;" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsCopyTx}" ToolTip="{x:Static res:Strings.MainMenuToolsCopyTxToolTip}" Click="copyTx_Click" Margin="2,0,0,1">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xF0E3;" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
+                    <!-- Erase Rx & Tx -->
                     <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseRx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseRxToolTip}" StaysOpenOnClick="True" Click="smazatPrijate_Click" Margin="2,0,0,1">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE75C;" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -58,13 +69,72 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
+                    <!-- Window on top -->
+                    <MenuItem Foreground="Black" x:Name="MenuCheckboxOnTop" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxOnTop}" IsChecked="True" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxOnTopToolTip}" Click="MenuCheckboxOnTop_Click" Margin="2,0,0,1" />
+                    <Separator />
+                    <!-- Wrapping -->
                     <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapRx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapRx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapRxToolTip}" Margin="2,0,0,1" />
                     <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapCRTx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapCRTx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapCRTxToolTip}" Margin="2,0,0,1" />
                     <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapLFTx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapLFTx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapLFTxToolTip}" Margin="2,0,0,1" />
                 </MenuItem>
+                <!-- Port -->
                 <MenuItem Header="{x:Static res:Strings.MainMenuPort}" Foreground="#FFF2FFFF">
-                    <MenuItem x:Name="MenuCheckboxDTR" Header="{x:Static res:Strings.MainMenuPortDtr}" ToolTip="{x:Static res:Strings.MainMenuPortDtrToolTip}" Foreground="Black" StaysOpenOnClick="True"  IsCheckable="True" Margin="2,0,0,1" Click="dtrCheckBox_Click" />
+                    <!-- DTR, RST -->
+                    <MenuItem MinWidth="275" x:Name="MenuCheckboxDTR" Header="{x:Static res:Strings.MainMenuPortDtr}" ToolTip="{x:Static res:Strings.MainMenuPortDtrToolTip}" Foreground="Black" StaysOpenOnClick="True"  IsCheckable="True" Margin="2,0,0,1" Click="dtrCheckBox_Click" />
                     <MenuItem x:Name="MenuCheckboxRTS" Header="{x:Static res:Strings.MainMenuPortRst}" ToolTip="{x:Static res:Strings.MainMenuPortRstToolTip}" Foreground="Black" StaysOpenOnClick="True" IsCheckable="True" Margin="2,0,0,1" Click="rtsCheckBox_Click" />
+                    <Separator />
+                    <!-- Handshake -->
+                    <MenuItem x:Name="MenuItemHandshake" StaysOpenOnClick="True" Margin="2,0,0,1">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="0,5,0,5">
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonHandshakeUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonHandshakeDown_Click" />
+                                </StackPanel>
+                                <Label x:Name="MenuLabelHandshake" Content="None" FontWeight="bold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                                <Label VerticalAlignment="Center"  Content="handshake" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <!-- Parity -->
+                    <MenuItem x:Name="MenuItemParity" StaysOpenOnClick="True" Margin="2,0,0,1">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="0,5,0,5">
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonParityUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonParityDown_Click" />
+                                </StackPanel>
+                                <Label x:Name="MenuLabelParity" Content="None" FontWeight="bold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                                <Label VerticalAlignment="Center"  Content="{x:Static res:Strings.MainMenuPortParity}" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <!-- Data bits -->
+                    <MenuItem x:Name="MenuItemDataBits" StaysOpenOnClick="True" Margin="2,0,0,1">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="0,5,0,5">
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonDataBitsUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonDataBitsDown_Click" />
+                                </StackPanel>
+                                <Label x:Name="MenuLabelDataBits" Content="8" FontWeight="bold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                                <Label VerticalAlignment="Center"  Content="{x:Static res:Strings.MainMenuPortDataBits}" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <!-- Stop bit -->
+                    <MenuItem x:Name="MenuItemStopBit" StaysOpenOnClick="True" Margin="2,0,0,1">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="0,5,0,5">
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonStopBitUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonStopBitDown_Click" />
+                                </StackPanel>
+                                <Label x:Name="MenuLabelStopBit" Content="1" FontWeight="bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                                <Label VerticalAlignment="Center" Content="{x:Static res:Strings.MainMenuPortStopBits}" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{x:Static res:Strings.MainMenuHelp}" Foreground="#FFF2FFFF">
                     <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuHelpAbout}" Click="about_Click" Margin="2,0,0,1">

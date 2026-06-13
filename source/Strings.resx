@@ -172,10 +172,10 @@
     <value>Adds a newline to received messages</value>
   </data>
   <data name="MainMenuToolsEraseRx" xml:space="preserve">
-    <value>Erase _Received (Rx)</value>
+    <value>Erase Received (Rx)</value>
   </data>
   <data name="MainMenuToolsEraseTx" xml:space="preserve">
-    <value>Erase _Sent (Tx)</value>
+    <value>Erase Sent (Tx)</value>
   </data>
   <data name="MainMenuToolsEraseRxToolTip" xml:space="preserve">
     <value>Clear the Received (Rx) window</value>
@@ -208,7 +208,7 @@
     <value>Sent (Tx):</value>
   </data>
   <data name="MenuCheckboxOnTop" xml:space="preserve">
-    <value>Window always on top</value>
+    <value>_Window always on top</value>
   </data>
   <data name="MenuCheckboxOnTopToolTip" xml:space="preserve">
     <value>Keep app window always on top</value>
@@ -287,5 +287,35 @@
   </data>
   <data name="MainWindowInputToolTip" xml:space="preserve">
     <value>Insert content to send</value>
+  </data>
+  <data name="MainMenuToolsCopyRx" xml:space="preserve">
+    <value>Copy Received (_Rx)</value>
+  </data>
+  <data name="MainMenuToolsCopyTx" xml:space="preserve">
+    <value>Copy Sent (_Tx)</value>
+  </data>
+  <data name="MainMenuToolsCopyRxToolTip" xml:space="preserve">
+    <value>Copy the Received (Rx) window to Clipboard</value>
+  </data>
+  <data name="MainMenuToolsCopyTxToolTip" xml:space="preserve">
+    <value>Copy the Sent (Tx) window to Clipboard</value>
+  </data>
+  <data name="MainMenuPortParity" xml:space="preserve">
+    <value>parity</value>
+  </data>
+  <data name="MainMenuPortDataBits" xml:space="preserve">
+    <value>data bits</value>
+  </data>
+  <data name="MainMenuPortHandshake" xml:space="preserve">
+    <value>Handshake</value>
+  </data>
+  <data name="MainMenuPortStopBits" xml:space="preserve">
+    <value>stop bits</value>
+  </data>
+  <data name="ParityOdd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="ParityEven" xml:space="preserve">
+    <value>Even</value>
   </data>
 </root>

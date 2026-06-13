@@ -304,6 +304,15 @@ namespace Serio {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to data bits.
+        /// </summary>
+        public static string MainMenuPortDataBits {
+            get {
+                return ResourceManager.GetString("MainMenuPortDataBits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _DTR on.
         /// </summary>
         public static string MainMenuPortDtr {
@@ -318,6 +327,24 @@ namespace Serio {
         public static string MainMenuPortDtrToolTip {
             get {
                 return ResourceManager.GetString("MainMenuPortDtrToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handshake.
+        /// </summary>
+        public static string MainMenuPortHandshake {
+            get {
+                return ResourceManager.GetString("MainMenuPortHandshake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to parity.
+        /// </summary>
+        public static string MainMenuPortParity {
+            get {
+                return ResourceManager.GetString("MainMenuPortParity", resourceCulture);
             }
         }
         
@@ -340,6 +367,15 @@ namespace Serio {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to stop bits.
+        /// </summary>
+        public static string MainMenuPortStopBits {
+            get {
+                return ResourceManager.GetString("MainMenuPortStopBits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Tools.
         /// </summary>
         public static string MainMenuTools {
@@ -349,7 +385,43 @@ namespace Serio {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erase _Received (Rx).
+        ///   Looks up a localized string similar to Copy Received (_Rx).
+        /// </summary>
+        public static string MainMenuToolsCopyRx {
+            get {
+                return ResourceManager.GetString("MainMenuToolsCopyRx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy the Received (Rx) window to Clipboard.
+        /// </summary>
+        public static string MainMenuToolsCopyRxToolTip {
+            get {
+                return ResourceManager.GetString("MainMenuToolsCopyRxToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Sent (_Tx).
+        /// </summary>
+        public static string MainMenuToolsCopyTx {
+            get {
+                return ResourceManager.GetString("MainMenuToolsCopyTx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy the Sent (Tx) window to Clipboard.
+        /// </summary>
+        public static string MainMenuToolsCopyTxToolTip {
+            get {
+                return ResourceManager.GetString("MainMenuToolsCopyTxToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erase Received (Rx).
         /// </summary>
         public static string MainMenuToolsEraseRx {
             get {
@@ -367,7 +439,7 @@ namespace Serio {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erase _Sent (Tx).
+        ///   Looks up a localized string similar to Erase Sent (Tx).
         /// </summary>
         public static string MainMenuToolsEraseTx {
             get {
@@ -394,7 +466,7 @@ namespace Serio {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Window always on top.
+        ///   Looks up a localized string similar to _Window always on top.
         /// </summary>
         public static string MenuCheckboxOnTop {
             get {
@@ -462,6 +534,24 @@ namespace Serio {
         public static string MenuCheckboxWrapRxToolTip {
             get {
                 return ResourceManager.GetString("MenuCheckboxWrapRxToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Even.
+        /// </summary>
+        public static string ParityEven {
+            get {
+                return ResourceManager.GetString("ParityEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odd.
+        /// </summary>
+        public static string ParityOdd {
+            get {
+                return ResourceManager.GetString("ParityOdd", resourceCulture);
             }
         }
         

@@ -5,6 +5,8 @@ using System.IO.Ports;
 using System.IO;
 using Microsoft.Win32;
 using System.Windows.Input;
+using Windows.Devices.SerialCommunication;
+using System.Security.Principal;
 
 namespace Serio;
 
@@ -30,6 +32,10 @@ public partial class MainWindow : Window
     private string[] dostupnePorty1;
 
     private SerialPort prvniSP = new SerialPort();
+    private int prvniSPdataBits = 8;
+    private StopBits prvniSPstopBits = StopBits.One;
+    private Parity prvniSPparity = Parity.None;
+    private Handshake prvniSPhandshake = Handshake.None;
     private System.Windows.Threading.DispatcherTimer casovac1 = new System.Windows.Threading.DispatcherTimer();
 
 
@@ -129,10 +135,10 @@ public partial class MainWindow : Window
                 prvniSP.BaudRate = Int32.Parse(comboBox_BaudRate.SelectedItem.ToString());
                 prvniSP.PortName = port;
                 // 8-N-1
-                prvniSP.DataBits = 8;
-                prvniSP.Parity = Parity.None;
-                prvniSP.StopBits = StopBits.One;
-                prvniSP.Handshake = Handshake.None;
+                prvniSP.DataBits = prvniSPdataBits;
+                prvniSP.StopBits = prvniSPstopBits;
+                prvniSP.Parity = prvniSPparity;
+                prvniSP.Handshake = prvniSPhandshake;
                 prvniSP.ReadTimeout = 500;
                 prvniSP.WriteTimeout = 500;
                 prvniSP.Encoding = System.Text.Encoding.UTF8;
@@ -152,7 +158,7 @@ public partial class MainWindow : Window
                     textBox_Tx.IsEnabled = true;
                     textBox_Input.IsEnabled = true;
                     button_Send.IsEnabled = true;
-                    rectangle_Status.ToolTip = Strings.StatusOpen + "\n• 8 data bits\n• No parity\n• 1 stop bit\n• No Handshake";
+                    rectangle_Status.ToolTip = Strings.StatusOpen;
                     button_StartStop.ToolTip = Strings.ButtonStartStopToolTipStop;
                     textBox_Input.Focus();
 
@@ -286,6 +292,28 @@ public partial class MainWindow : Window
     }
 
     // MENU - Nástroje
+    private void MenuCheckboxOnTop_Click(object sender, RoutedEventArgs e)
+    {
+        if (MenuCheckboxOnTop.IsChecked)
+        {
+            this.Topmost = true;
+        }
+        else
+        {
+            this.Topmost = false;
+        }
+    }
+
+    private void copyRx_Click(object sender, RoutedEventArgs e)
+    {
+        Clipboard.SetText(textBox_Rx.Text);
+    }
+
+    private void copyTx_Click(object sender, RoutedEventArgs e)
+    {
+        Clipboard.SetText(textBox_Tx.Text);
+    }
+
     private void smazatPrijate_Click(object sender, RoutedEventArgs e)
     {
         textBox_Rx.Clear();
@@ -316,6 +344,134 @@ public partial class MainWindow : Window
         else
         {
             prvniSP.RtsEnable = false;
+        }
+    }
+
+    private void ButtonDataBitsUp_Click(object sender, RoutedEventArgs e)
+    {
+        int dataBits = int.Parse(MenuLabelDataBits.Content.ToString());
+
+        if (dataBits < 8)
+        {
+            dataBits++;
+            prvniSPdataBits = dataBits;
+            prvniSP.DataBits = prvniSPdataBits;
+            MenuLabelDataBits.Content = prvniSPdataBits;
+        }
+    }
+
+    private void ButtonDataBitsDown_Click(object sender, RoutedEventArgs e)
+    {
+        int dataBits = int.Parse(MenuLabelDataBits.Content.ToString());
+
+        if (dataBits > 5)
+        {
+            dataBits--;
+            prvniSPdataBits = dataBits;
+            prvniSP.DataBits = prvniSPdataBits;
+            MenuLabelDataBits.Content = prvniSPdataBits;
+        }
+    }
+
+    private void ButtonStopBitUp_Click(object sender, RoutedEventArgs e)
+    {
+        string stopBit = MenuLabelStopBit.Content.ToString();
+
+        switch (stopBit)
+        {
+            case "1":
+                prvniSPstopBits = StopBits.OnePointFive;
+                prvniSP.StopBits = prvniSPstopBits;
+                MenuLabelStopBit.Content = "1.5";
+                break;
+            case "1.5":
+                prvniSPstopBits = StopBits.Two;
+                prvniSP.StopBits = prvniSPstopBits;
+                MenuLabelStopBit.Content = "2";
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ButtonStopBitDown_Click(object sender, RoutedEventArgs e)
+    {
+        string stopBit = MenuLabelStopBit.Content.ToString();
+
+        switch (stopBit)
+        {
+            case "2":
+                prvniSPstopBits = StopBits.OnePointFive;
+                prvniSP.StopBits = prvniSPstopBits;
+                MenuLabelStopBit.Content = "1.5";
+                break;
+            case "1.5":
+                prvniSPstopBits = StopBits.One;
+                prvniSP.StopBits = prvniSPstopBits;
+                MenuLabelStopBit.Content = "1";
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ButtonParityUp_Click(object sender, RoutedEventArgs e)
+    {
+        string parity = MenuLabelParity.Content.ToString();
+        string[] parityValues = { "None", Strings.ParityOdd, Strings.ParityEven, "Mark", "Space" };
+
+        int index = -1;
+        if ((index = parityValues.IndexOf(parity)) > -1) {
+            index = (index + 1 >= parityValues.Length) ? index : index + 1;
+            prvniSPparity = (Parity)index;
+            prvniSP.Parity = prvniSPparity;
+            MenuLabelParity.Content = parityValues[index];
+        }
+    }
+
+    private void ButtonParityDown_Click(object sender, RoutedEventArgs e)
+    {
+        string parity = MenuLabelParity.Content.ToString();
+        string[] parityValues = { "None", Strings.ParityOdd, Strings.ParityEven, "Mark", "Space" };
+
+        int index = -1;
+        if ((index = parityValues.IndexOf(parity)) > -1)
+        {
+            index = (index - 1 < 0) ? index : index - 1;
+            prvniSPparity = (Parity)index;
+            prvniSP.Parity = prvniSPparity;
+            MenuLabelParity.Content = parityValues[index];
+        }
+    }
+
+    // ButtonHandshake
+    private void ButtonHandshakeUp_Click(object sender, RoutedEventArgs e)
+    {
+        string handshake = MenuLabelHandshake.Content.ToString();
+        string[] handshakeValues = { "None", "XON/XOFF", "RTS/CTS", "RTS/CTS & XON/XOFF" };
+
+        int index = -1;
+        if ((index = handshakeValues.IndexOf(handshake)) > -1)
+        {
+            index = (index + 1 >= handshakeValues.Length) ? index : index + 1;
+            prvniSPhandshake = (Handshake)index;
+            prvniSP.Handshake = prvniSPhandshake;
+            MenuLabelHandshake.Content = handshakeValues[index];
+        }
+    }
+
+    private void ButtonHandshakeDown_Click(object sender, RoutedEventArgs e)
+    {
+        string handshake = MenuLabelHandshake.Content.ToString();
+        string[] handshakeValues = { "None", "XON/XOFF", "RTS/CTS", "RTS/CTS & XON/XOFF" };
+
+        int index = -1;
+        if ((index = handshakeValues.IndexOf(handshake)) > -1)
+        {
+            index = (index - 1 < 0) ? index : index - 1;
+            prvniSPhandshake = (Handshake)index;
+            prvniSP.Handshake = prvniSPhandshake;
+            MenuLabelHandshake.Content = handshakeValues[index];
         }
     }
 
@@ -376,15 +532,5 @@ public partial class MainWindow : Window
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
         zavriPort();
-    }
-
-    private void MenuCheckboxOnTop_Click(object sender, RoutedEventArgs e)
-    {
-        if (MenuCheckboxOnTop.IsChecked) {
-            this.Topmost = true;
-        }
-        else {
-            this.Topmost = false;
-        }
     }
 }
