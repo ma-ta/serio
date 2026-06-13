@@ -23,4 +23,4 @@ SerIO v1.2.0 for:
 
 ### Screenshot:
 
-![Screenshot of Serio v1.2](/serio-v1.1.png)
+![Screenshot of Serio v1.2](/serio-v1.2.png)
