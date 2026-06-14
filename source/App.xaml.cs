@@ -16,7 +16,7 @@ public partial class App : Application
     public static readonly string AUTHOR = "Ma-TA";
     public static readonly string LICENSE = "GNU GPLv3";
     public static readonly string LICENSE_LONG = "GNU General Public License";
-    public static readonly string VERSION = "1.2.0  |  2026-06-13";
+    public static readonly string VERSION = "1.2.0  |  2026-06-14";
     public static readonly string GITHUB = "github.com/ma-ta/serio";
     public static readonly string DOTNET_INFO = RuntimeInformation.FrameworkDescription;
     public static readonly string ARCH_INFO = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
