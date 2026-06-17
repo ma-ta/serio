@@ -19,11 +19,11 @@
 SerIO v1.2.0:
 
 - Installer:
-  - [Windows 11 (64-bit)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-x64.exe)
-  - [Windows 11 (ARM64/AArch64)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-arm64.exe)
+  - [Windows 11 (x86_64)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-x64.exe)
+  - [Windows 11 (AArch64/ARM64)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-arm64.exe)
 - Portable (*.exe):
-  - [Windows 11 (64-bit)](//github.com/ma-ta/serio/releases/download/v1.2.0/Serio-x64.exe)
-  - [Windows 11 (ARM64/AArch64)](//github.com/ma-ta/serio/releases/download/v1.2.0/Serio-arm64.exe)
+  - [Windows 11 (x86_64)](//github.com/ma-ta/serio/releases/download/v1.2.0/Serio-x64.exe)
+  - [Windows 11 (AArch64/ARM64)](//github.com/ma-ta/serio/releases/download/v1.2.0/Serio-arm64.exe)
 
 ### Screenshot:
 
