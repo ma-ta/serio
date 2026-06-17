@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Width="800" Height="600" MinWidth="600" MinHeight="450"
         WindowStartupLocation="CenterScreen"
-        PreviewKeyDown="Window_PreviewKeyDown"
+        PreviewKeyDown="window_PreviewKeyDown"
         Background="#FF35393D"
         Topmost="True"
         xmlns:res="clr-namespace:Serio">
@@ -58,12 +58,12 @@
                     </MenuItem>
                     <Separator />
                     <!-- Erase Rx & Tx -->
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseRx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseRxToolTip}" StaysOpenOnClick="True" Click="smazatPrijate_Click" Margin="2,0,0,1">
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseRx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseRxToolTip}" StaysOpenOnClick="True" Click="eraseReceived_Click" Margin="2,0,0,1">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE75C;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseTx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseTxToolTip}" StaysOpenOnClick="True" Click="smazatOdeslane_Click" Margin="2,0,0,1">
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseTx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseTxToolTip}" StaysOpenOnClick="True" Click="eraseSent_Click" Margin="2,0,0,1">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE75C;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
@@ -88,8 +88,8 @@
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical" Margin="0,5,0,5">
-                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonHandshakeUp_Click" />
-                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonHandshakeDown_Click" />
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonHandshakeUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonHandshakeDown_Click" />
                                 </StackPanel>
                                 <Label x:Name="MenuLabelHandshake" Content="None" FontWeight="bold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
                                 <Label VerticalAlignment="Center"  Content="handshake" />
@@ -101,8 +101,8 @@
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical" Margin="0,5,0,5">
-                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonParityUp_Click" />
-                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonParityDown_Click" />
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonParityUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonParityDown_Click" />
                                 </StackPanel>
                                 <Label x:Name="MenuLabelParity" Content="None" FontWeight="bold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
                                 <Label VerticalAlignment="Center"  Content="{x:Static res:Strings.MainMenuPortParity}" />
@@ -114,8 +114,8 @@
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical" Margin="0,5,0,5">
-                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonDataBitsUp_Click" />
-                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonDataBitsDown_Click" />
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonDataBitsUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonDataBitsDown_Click" />
                                 </StackPanel>
                                 <Label x:Name="MenuLabelDataBits" Content="8" FontWeight="bold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
                                 <Label VerticalAlignment="Center"  Content="{x:Static res:Strings.MainMenuPortDataBits}" />
@@ -127,8 +127,8 @@
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Vertical" Margin="0,5,0,5">
-                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonStopBitUp_Click" />
-                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="ButtonStopBitDown_Click" />
+                                    <RepeatButton Content="&#xE971;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonStopBitUp_Click" />
+                                    <RepeatButton Content="&#xE972;" FontSize="14" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Click="buttonStopBitDown_Click" />
                                 </StackPanel>
                                 <Label x:Name="MenuLabelStopBit" Content="1" FontWeight="bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
                                 <Label VerticalAlignment="Center" Content="{x:Static res:Strings.MainMenuPortStopBits}" />

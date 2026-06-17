@@ -13,7 +13,7 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="logoImage" StretchDirection="DownOnly" Margin="25,0,0,8" Width="128" MouseDown="Image_MouseDown" Cursor="Hand" Source="/ikona_cb_128px.png" >
+        <Image x:Name="logoImage" StretchDirection="DownOnly" Margin="25,0,0,8" Width="128" MouseDown="Image_MouseDown" Cursor="Hand" Source="/icon_bw_128px.png" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

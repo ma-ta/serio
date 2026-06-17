@@ -14,7 +14,7 @@ namespace Serio
         {
             InitializeComponent();
 
-            // nastavení popisků okna winAbout
+            // WindowAbout titles setup
             labelTitle.Text = "SerIO";
             labelVersion.Text += App.VERSION;
             labelArch.Text += App.DOTNET_INFO + " (" + App.ARCH_INFO + ")";
@@ -24,22 +24,22 @@ namespace Serio
             windowAboutRepoLink.NavigateUri = new System.Uri("https://" + App.GITHUB);
             labelAuthor.Text += String.Format("–{0}  {1}", DateTime.Now.Year, App.AUTHOR);
 
-            // nastavení časovače pro EasterEgg
-            casovacEgg.Interval = new TimeSpan(0, 0, 0, 0, 350); // interval blikání [ms]
-            casovacEgg.Tick += new EventHandler(casovacEgg_Tick);
+            // easteregg timer setup
+            timerEgg.Interval = new TimeSpan(0, 0, 0, 0, 350); // blinking interval [ms]
+            timerEgg.Tick += new EventHandler(timerEgg_Tick);
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            // zavře okno po stisknutí Esc
+            // closing the WindowsAbout on Esc key
             if (e.Key == Key.Escape)
                 this.Close();
         }
 
 
-        // EasterEgg pro ikonu loga
+        // EasterEgg for the logo (app icon)
 
-        System.Windows.Threading.DispatcherTimer casovacEgg = new();
+        System.Windows.Threading.DispatcherTimer timerEgg = new();
         Boolean eggActive = false;
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
@@ -47,35 +47,35 @@ namespace Serio
             if (!eggActive)
             {
                 eggActive = true;
-                casovacEgg.Start();
+                timerEgg.Start();
             }
             else
             {
                 eggActive = false;
-                casovacEgg.Stop();
-                logoImage.Source = ikonaPuvodni;
-                eggZmena = false;
+                timerEgg.Stop();
+                logoImage.Source = icon;
+                eggChange = false;
             }
 
         }
 
 
-        ImageSource ikonaCb = new BitmapImage(new Uri("ikona_cb_128px.png", UriKind.Relative));
-        ImageSource ikonaPuvodni = new BitmapImage(new Uri("ikona_128px.png", UriKind.Relative));
+        ImageSource iconBW = new BitmapImage(new Uri("icon_bw_128px.png", UriKind.Relative));
+        ImageSource icon = new BitmapImage(new Uri("icon_128px.png", UriKind.Relative));
 
-        Boolean eggZmena = false;
+        Boolean eggChange = false;
 
-        private void casovacEgg_Tick(object sender, EventArgs e)
+        private void timerEgg_Tick(object sender, EventArgs e)
         {
-            if (!eggZmena)
+            if (!eggChange)
             {
-                logoImage.Source = ikonaCb;
-                eggZmena = true;
+                logoImage.Source = iconBW;
+                eggChange = true;
             }
             else
             {
-                logoImage.Source = ikonaPuvodni;
-                eggZmena = false;
+                logoImage.Source = icon;
+                eggChange = false;
             }
 
         }

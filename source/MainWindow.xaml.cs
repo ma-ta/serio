@@ -5,8 +5,6 @@ using System.IO.Ports;
 using System.IO;
 using Microsoft.Win32;
 using System.Windows.Input;
-using Windows.Devices.SerialCommunication;
-using System.Security.Principal;
 
 namespace Serio;
 
@@ -16,53 +14,52 @@ namespace Serio;
 public partial class MainWindow : Window
 {
 
-    private SolidColorBrush barvaBila = new(Color.FromArgb(0xFF, 0xF2, 0xFF, 0xFF)); // #FFF2FFFF
-    private SolidColorBrush barvaModra1 = new(Color.FromArgb(0xFF, 0x92, 0xCA, 0xF4)); // #FF92CAF4
-    private SolidColorBrush barvaModra2 = new(Color.FromArgb(0xFF, 0x56, 0x9C, 0xD6)); // #FF569CD6
-    private SolidColorBrush barvaZelena = new(Color.FromArgb(0xFF, 0x00, 0xCC, 0x6A)); // #FF00CC6A
-    private SolidColorBrush barvaCervena = new(Color.FromArgb(0xFF, 0xE8, 0x11, 0x23)); // #FFE81123
+    private SolidColorBrush colorWhite = new(Color.FromArgb(0xFF, 0xF2, 0xFF, 0xFF)); // #FFF2FFFF
+    private SolidColorBrush colorBlue1 = new(Color.FromArgb(0xFF, 0x92, 0xCA, 0xF4)); // #FF92CAF4
+    private SolidColorBrush colorBlue2 = new(Color.FromArgb(0xFF, 0x56, 0x9C, 0xD6)); // #FF569CD6
+    private SolidColorBrush colorGreen = new(Color.FromArgb(0xFF, 0x00, 0xCC, 0x6A)); // #FF00CC6A
+    private SolidColorBrush colorRed = new(Color.FromArgb(0xFF, 0xE8, 0x11, 0x23)); // #FFE81123
 
-    // inicializace konstant a proměnných
-    private readonly string[] baudy = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
-    private const int vychoziPolozka_comboBox_BaudRate = 11;  // 115200
+    // initialization of constants and variables
+    private readonly string[] baudRates = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
+    private const int defaultBaudRate = 11;  // 115200
     
     private delegate void NoArgDelegate();
     private bool status = false;
     private string port;
-    private string[] dostupnePorty1;
+    private string[] availablePorts;
 
-    private SerialPort prvniSP = new SerialPort();
-    private int prvniSPdataBits = 8;
-    private StopBits prvniSPstopBits = StopBits.One;
-    private Parity prvniSPparity = Parity.None;
-    private Handshake prvniSPhandshake = Handshake.None;
-    private System.Windows.Threading.DispatcherTimer casovac1 = new System.Windows.Threading.DispatcherTimer();
+    private SerialPort sPort = new SerialPort();
+    private int sPortDataBits = 8;
+    private StopBits sPortStopBits = StopBits.One;
+    private Parity sPortParity = Parity.None;
+    private Handshake sPortHandshake = Handshake.None;
+    private System.Windows.Threading.DispatcherTimer timerCheckPorts = new System.Windows.Threading.DispatcherTimer();
 
 
     public MainWindow()
     {
-        barvaBila.Freeze(); barvaModra1.Freeze(); barvaModra2.Freeze(); barvaZelena.Freeze(); barvaCervena.Freeze();
+        colorWhite.Freeze(); colorBlue1.Freeze(); colorBlue2.Freeze(); colorGreen.Freeze(); colorRed.Freeze();
         
         InitializeComponent();
-        
-        // Registrace pro případ neočekávaného pádu aplikace
+
+        // registration of functions for unexpected exit
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-        // Registrace pro případ náhlého ukončení procesu
         AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
 
         this.Title = App.TITLE;
 
-        casovac1.Interval = new TimeSpan(0, 0, 0, 5, 000);
-        casovac1.Tick += new EventHandler(casovac1_Tick);
-        casovac1.Start();
+        timerCheckPorts.Interval = new TimeSpan(0, 0, 0, 5, 000);
+        timerCheckPorts.Tick += new EventHandler(timerCheckPorts_Tick);
+        timerCheckPorts.Start();
 
-        foreach (string rychlost in baudy)
+        foreach (string rychlost in baudRates)
         {
             comboBox_BaudRate.Items.Add(rychlost);
         }
-        comboBox_BaudRate.SelectedIndex = vychoziPolozka_comboBox_BaudRate;
-        dostupnePorty1 = SerialPort.GetPortNames();
-        foreach (string port in dostupnePorty1)
+        comboBox_BaudRate.SelectedIndex = defaultBaudRate;
+        availablePorts = SerialPort.GetPortNames();
+        foreach (string port in availablePorts)
         {
             comboBox_Port.Items.Add(port);
         }
@@ -70,43 +67,43 @@ public partial class MainWindow : Window
 
     }
 
-    // aktualizace seznamu dostupných portů
-    private void casovac1_Tick(object sender, EventArgs e)
+    // the list of available ports update
+    private void timerCheckPorts_Tick(object sender, EventArgs e)
     {
-        string[] dostupnePorty = SerialPort.GetPortNames();
-        if (!dostupnePorty.SequenceEqual(dostupnePorty1))
+        string[] actualPorts = SerialPort.GetPortNames();
+        if (!actualPorts.SequenceEqual(availablePorts))
         {
             comboBox_Port.Items.Clear();
-            foreach (string port in dostupnePorty)
+            foreach (string port in actualPorts)
             {
                 comboBox_Port.Items.Add(port);
             }
-            dostupnePorty1 = dostupnePorty;
+            availablePorts = actualPorts;
 
             // DEBUG
-            //textBox_Tx.AppendText("Změna portů\n");
+            //textBox_Tx.AppendText("> Ports changed\n");
         }
 
     }
 
-    public void PrichoziData(object sender, SerialDataReceivedEventArgs e)
+    public void incomingData(object sender, SerialDataReceivedEventArgs e)
     {
         base.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.
             Send, (NoArgDelegate)delegate
             {
                 SerialPort sp = (SerialPort)sender;
-                string zprava = sp.ReadExisting();
+                string msg = sp.ReadExisting();
 
                 //string detail = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n";
 
                 if (!MenuCheckboxWrapRx.IsChecked)
                 {
-                    textBox_Rx.AppendText(/*detail + */zprava);
+                    textBox_Rx.AppendText(/*detail + */msg);
                 }
                 else if (MenuCheckboxWrapRx.IsChecked)
                 {
 
-                    textBox_Rx.AppendText(/*detail + */zprava.TrimEnd('\r', '\n') + Environment.NewLine);
+                    textBox_Rx.AppendText(/*detail + */msg.TrimEnd('\r', '\n') + Environment.NewLine);
                 }
                 //textBox_Rx.Focus();
                 textBox_Rx.CaretIndex = textBox_Rx.Text.Length;
@@ -117,10 +114,10 @@ public partial class MainWindow : Window
     }
 
 
-    // OVLÁDACÍ PRVKY HLAVNÍHO OKNA
+    // MainWindow GUI widgets
     private void comboBox_BaudRate_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
     {
-        prvniSP.BaudRate = Int32.Parse(comboBox_BaudRate.SelectedItem.ToString());
+        sPort.BaudRate = Int32.Parse(comboBox_BaudRate.SelectedItem.ToString());
     }
 
 
@@ -132,27 +129,27 @@ public partial class MainWindow : Window
             {
                 port = comboBox_Port.SelectedItem.ToString();
 
-                prvniSP.BaudRate = Int32.Parse(comboBox_BaudRate.SelectedItem.ToString());
-                prvniSP.PortName = port;
+                sPort.BaudRate = Int32.Parse(comboBox_BaudRate.SelectedItem.ToString());
+                sPort.PortName = port;
                 // 8-N-1
-                prvniSP.DataBits = prvniSPdataBits;
-                prvniSP.StopBits = prvniSPstopBits;
-                prvniSP.Parity = prvniSPparity;
-                prvniSP.Handshake = prvniSPhandshake;
-                prvniSP.ReadTimeout = 500;
-                prvniSP.WriteTimeout = 500;
-                prvniSP.Encoding = System.Text.Encoding.UTF8;
+                sPort.DataBits = sPortDataBits;
+                sPort.StopBits = sPortStopBits;
+                sPort.Parity = sPortParity;
+                sPort.Handshake = sPortHandshake;
+                sPort.ReadTimeout = 500;
+                sPort.WriteTimeout = 500;
+                sPort.Encoding = System.Text.Encoding.UTF8;
 
-                prvniSP.DataReceived += new SerialDataReceivedEventHandler(PrichoziData);
+                sPort.DataReceived += new SerialDataReceivedEventHandler(incomingData);
 
                 try
                 {
-                    prvniSP.Open();
+                    sPort.Open();
 
                     button_StartStop.Content = Strings.ButtonStartStopStop;
-                    rectangle_Status.Fill = barvaZelena;
+                    rectangle_Status.Fill = colorGreen;
                     comboBox_Port.IsEnabled = false;
-                    casovac1.Stop();
+                    timerCheckPorts.Stop();
 
                     textBox_Rx.IsEnabled = true;
                     textBox_Tx.IsEnabled = true;
@@ -176,12 +173,12 @@ public partial class MainWindow : Window
         }
         else if (status == true)
         {
-            zavriPort();
+            closePort();
 
             button_StartStop.Content = Strings.ButtonStartStopStart;
-            rectangle_Status.Fill = barvaCervena;
+            rectangle_Status.Fill = colorRed;
             comboBox_Port.IsEnabled = true;
-            casovac1.Start();
+            timerCheckPorts.Start();
 
             textBox_Input.IsEnabled = false;
             button_Send.IsEnabled = false;
@@ -196,27 +193,27 @@ public partial class MainWindow : Window
     {
         if (status == true)
         {
-            string vstup = textBox_Input.Text;
+            string input = textBox_Input.Text;
 
             if (MenuCheckboxWrapCRTx.IsChecked)
             {
-                vstup += "\r";
+                input += "\r";
             }
             if (MenuCheckboxWrapLFTx.IsChecked)
             {
-                vstup += "\n";
+                input += "\n";
             }
 
-            if (vstup != "")
+            if (input != "")
             {
                 try
                 {
-                    prvniSP.Write(vstup);
+                    sPort.Write(input);
                     //string detail = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "\n";
                     textBox_Input.Clear();
-                    textBox_Tx.Foreground = barvaModra2;
+                    textBox_Tx.Foreground = colorBlue2;
 
-                    textBox_Tx.AppendText(/*detail + */vstup/* + "\n"*/);
+                    textBox_Tx.AppendText(/*detail + */input/* + "\n"*/);
 
                     textBox_Tx.Focus();
                     textBox_Tx.CaretIndex = textBox_Tx.Text.Length;
@@ -225,7 +222,7 @@ public partial class MainWindow : Window
                 catch (Exception ex)
                 {
                     string detail = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " " + Strings.Exception.ToUpper() + ":\n";
-                    textBox_Tx.Foreground = barvaCervena;
+                    textBox_Tx.Foreground = colorRed;
                     textBox_Tx.AppendText(detail + ex.Message + "\n\n");
 
                     if (ex is InvalidOperationException)
@@ -241,19 +238,19 @@ public partial class MainWindow : Window
 
     // MAIN MENU
 
-    // MENU - Soubor - Export do *.txt
+    // MENU - File - Export to *.txt
     private void export_Click(object sender, RoutedEventArgs e)
     {
         if ((textBox_Rx.Text != "") || (textBox_Tx.Text != ""))
         {
             try
             {
-                const String ohraniceni = "####################################";
-                String cas = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                String exportString = "## " + Strings.LogCreated + ": " + cas + Environment.NewLine;
-                exportString += ohraniceni + Environment.NewLine + "## " + Strings.Received.ToUpper() + " (Rx):" + Environment.NewLine + ohraniceni + Environment.NewLine;
+                const String border = "####################################";
+                String actualTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                String exportString = "## " + Strings.LogCreated + ": " + actualTime + Environment.NewLine;
+                exportString += border + Environment.NewLine + "## " + Strings.Received.ToUpper() + " (Rx):" + Environment.NewLine + border + Environment.NewLine;
                 exportString += textBox_Rx.Text;
-                exportString += Environment.NewLine + ohraniceni + Environment.NewLine + "## " + Strings.Sent.ToUpper() + " (Tx):" + Environment.NewLine + ohraniceni + Environment.NewLine;
+                exportString += Environment.NewLine + border + Environment.NewLine + "## " + Strings.Sent.ToUpper() + " (Tx):" + Environment.NewLine + border + Environment.NewLine;
                 exportString += textBox_Tx.Text;
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -278,20 +275,20 @@ public partial class MainWindow : Window
         }
     }
 
-    // MENU - Soubor - Ukončit
+    // MENU - File - Quit
     private void exit_Click(object sender, RoutedEventArgs e)
     {
         MessageBoxResult result = MessageBox.Show(Strings.DialogQuit, Strings.Quit, MessageBoxButton.OKCancel, MessageBoxImage.Warning);
         switch (result)
         {
             case MessageBoxResult.OK:
-                zavriPort();
+                closePort();
                 Application.Current.Shutdown();
                 break;
         }
     }
 
-    // MENU - Nástroje
+    // MENU - Tools
     private void MenuCheckboxOnTop_Click(object sender, RoutedEventArgs e)
     {
         if (MenuCheckboxOnTop.IsChecked)
@@ -314,11 +311,11 @@ public partial class MainWindow : Window
         Clipboard.SetText(textBox_Tx.Text);
     }
 
-    private void smazatPrijate_Click(object sender, RoutedEventArgs e)
+    private void eraseReceived_Click(object sender, RoutedEventArgs e)
     {
         textBox_Rx.Clear();
     }
-    private void smazatOdeslane_Click(object sender, RoutedEventArgs e)
+    private void eraseSent_Click(object sender, RoutedEventArgs e)
     {
         textBox_Tx.Clear();
     }
@@ -328,10 +325,10 @@ public partial class MainWindow : Window
     {
         if (MenuCheckboxDTR.IsChecked)
         {
-            prvniSP.DtrEnable = true;
+            sPort.DtrEnable = true;
         }
         else {
-            prvniSP.DtrEnable = false;
+            sPort.DtrEnable = false;
         }
     }
     
@@ -339,54 +336,54 @@ public partial class MainWindow : Window
     {
         if (MenuCheckboxRTS.IsChecked)
         {
-            prvniSP.RtsEnable = true;
+            sPort.RtsEnable = true;
         }
         else
         {
-            prvniSP.RtsEnable = false;
+            sPort.RtsEnable = false;
         }
     }
 
-    private void ButtonDataBitsUp_Click(object sender, RoutedEventArgs e)
+    private void buttonDataBitsUp_Click(object sender, RoutedEventArgs e)
     {
         int dataBits = int.Parse(MenuLabelDataBits.Content.ToString());
 
         if (dataBits < 8)
         {
             dataBits++;
-            prvniSPdataBits = dataBits;
-            prvniSP.DataBits = prvniSPdataBits;
-            MenuLabelDataBits.Content = prvniSPdataBits;
+            sPortDataBits = dataBits;
+            sPort.DataBits = sPortDataBits;
+            MenuLabelDataBits.Content = sPortDataBits;
         }
     }
 
-    private void ButtonDataBitsDown_Click(object sender, RoutedEventArgs e)
+    private void buttonDataBitsDown_Click(object sender, RoutedEventArgs e)
     {
         int dataBits = int.Parse(MenuLabelDataBits.Content.ToString());
 
         if (dataBits > 5)
         {
             dataBits--;
-            prvniSPdataBits = dataBits;
-            prvniSP.DataBits = prvniSPdataBits;
-            MenuLabelDataBits.Content = prvniSPdataBits;
+            sPortDataBits = dataBits;
+            sPort.DataBits = sPortDataBits;
+            MenuLabelDataBits.Content = sPortDataBits;
         }
     }
 
-    private void ButtonStopBitUp_Click(object sender, RoutedEventArgs e)
+    private void buttonStopBitUp_Click(object sender, RoutedEventArgs e)
     {
         string stopBit = MenuLabelStopBit.Content.ToString();
 
         switch (stopBit)
         {
             case "1":
-                prvniSPstopBits = StopBits.OnePointFive;
-                prvniSP.StopBits = prvniSPstopBits;
+                sPortStopBits = StopBits.OnePointFive;
+                sPort.StopBits = sPortStopBits;
                 MenuLabelStopBit.Content = "1.5";
                 break;
             case "1.5":
-                prvniSPstopBits = StopBits.Two;
-                prvniSP.StopBits = prvniSPstopBits;
+                sPortStopBits = StopBits.Two;
+                sPort.StopBits = sPortStopBits;
                 MenuLabelStopBit.Content = "2";
                 break;
             default:
@@ -394,20 +391,20 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ButtonStopBitDown_Click(object sender, RoutedEventArgs e)
+    private void buttonStopBitDown_Click(object sender, RoutedEventArgs e)
     {
         string stopBit = MenuLabelStopBit.Content.ToString();
 
         switch (stopBit)
         {
             case "2":
-                prvniSPstopBits = StopBits.OnePointFive;
-                prvniSP.StopBits = prvniSPstopBits;
+                sPortStopBits = StopBits.OnePointFive;
+                sPort.StopBits = sPortStopBits;
                 MenuLabelStopBit.Content = "1.5";
                 break;
             case "1.5":
-                prvniSPstopBits = StopBits.One;
-                prvniSP.StopBits = prvniSPstopBits;
+                sPortStopBits = StopBits.One;
+                sPort.StopBits = sPortStopBits;
                 MenuLabelStopBit.Content = "1";
                 break;
             default:
@@ -415,7 +412,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ButtonParityUp_Click(object sender, RoutedEventArgs e)
+    private void buttonParityUp_Click(object sender, RoutedEventArgs e)
     {
         string parity = MenuLabelParity.Content.ToString();
         string[] parityValues = { "None", Strings.ParityOdd, Strings.ParityEven, "Mark", "Space" };
@@ -423,13 +420,13 @@ public partial class MainWindow : Window
         int index = -1;
         if ((index = parityValues.IndexOf(parity)) > -1) {
             index = (index + 1 >= parityValues.Length) ? index : index + 1;
-            prvniSPparity = (Parity)index;
-            prvniSP.Parity = prvniSPparity;
+            sPortParity = (Parity)index;
+            sPort.Parity = sPortParity;
             MenuLabelParity.Content = parityValues[index];
         }
     }
 
-    private void ButtonParityDown_Click(object sender, RoutedEventArgs e)
+    private void buttonParityDown_Click(object sender, RoutedEventArgs e)
     {
         string parity = MenuLabelParity.Content.ToString();
         string[] parityValues = { "None", Strings.ParityOdd, Strings.ParityEven, "Mark", "Space" };
@@ -438,14 +435,14 @@ public partial class MainWindow : Window
         if ((index = parityValues.IndexOf(parity)) > -1)
         {
             index = (index - 1 < 0) ? index : index - 1;
-            prvniSPparity = (Parity)index;
-            prvniSP.Parity = prvniSPparity;
+            sPortParity = (Parity)index;
+            sPort.Parity = sPortParity;
             MenuLabelParity.Content = parityValues[index];
         }
     }
 
     // ButtonHandshake
-    private void ButtonHandshakeUp_Click(object sender, RoutedEventArgs e)
+    private void buttonHandshakeUp_Click(object sender, RoutedEventArgs e)
     {
         string handshake = MenuLabelHandshake.Content.ToString();
         string[] handshakeValues = { "None", "XON/XOFF", "RTS/CTS", "RTS/CTS & XON/XOFF" };
@@ -454,13 +451,13 @@ public partial class MainWindow : Window
         if ((index = handshakeValues.IndexOf(handshake)) > -1)
         {
             index = (index + 1 >= handshakeValues.Length) ? index : index + 1;
-            prvniSPhandshake = (Handshake)index;
-            prvniSP.Handshake = prvniSPhandshake;
+            sPortHandshake = (Handshake)index;
+            sPort.Handshake = sPortHandshake;
             MenuLabelHandshake.Content = handshakeValues[index];
         }
     }
 
-    private void ButtonHandshakeDown_Click(object sender, RoutedEventArgs e)
+    private void buttonHandshakeDown_Click(object sender, RoutedEventArgs e)
     {
         string handshake = MenuLabelHandshake.Content.ToString();
         string[] handshakeValues = { "None", "XON/XOFF", "RTS/CTS", "RTS/CTS & XON/XOFF" };
@@ -469,13 +466,13 @@ public partial class MainWindow : Window
         if ((index = handshakeValues.IndexOf(handshake)) > -1)
         {
             index = (index - 1 < 0) ? index : index - 1;
-            prvniSPhandshake = (Handshake)index;
-            prvniSP.Handshake = prvniSPhandshake;
+            sPortHandshake = (Handshake)index;
+            sPort.Handshake = sPortHandshake;
             MenuLabelHandshake.Content = handshakeValues[index];
         }
     }
 
-    // MENU - Nápověda
+    // MENU - Help
     private void about_Click(object sender, RoutedEventArgs e)
     {
         WindowAbout winAbout = new WindowAbout();
@@ -486,7 +483,7 @@ public partial class MainWindow : Window
 
 
 
-    private void Window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    private void window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
         if (e.Key == Key.F5)
         {
@@ -494,43 +491,43 @@ public partial class MainWindow : Window
         }
     }
 
-    private void zavriPort()
+    private void closePort()
     {
-        if (prvniSP != null)  {
+        if (sPort != null)  {
             try
             {
-                prvniSP.DataReceived -= PrichoziData;
-                if (prvniSP.IsOpen)
+                sPort.DataReceived -= incomingData;
+                if (sPort.IsOpen)
                 {
-                    prvniSP.DiscardInBuffer();
-                    prvniSP.DiscardOutBuffer();
-                    prvniSP.Close();
+                    sPort.DiscardInBuffer();
+                    sPort.DiscardOutBuffer();
+                    sPort.Close();
                 }
             }
             finally {
-                prvniSP.Dispose();
+                sPort.Dispose();
             }
         }
     }
 
-    // KONEC
+    // EXIT
 
-    // Uživatel kliknul na křížek nebo Alt+F4
+    // user pushed standard quit or Alt+F4
     protected override void OnClosed(EventArgs e)
     {
-        zavriPort();
+        closePort();
         base.OnClosed(e);
     }
 
-    // Aplikace končí standardně jako proces
+    // standard app exit
     private void CurrentDomain_ProcessExit(object sender, EventArgs e)
     {
-        zavriPort();
+        closePort();
     }
 
-    // V aplikaci nastala kritická chyba (pád)
+    // a critical error (forced exit)
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
-        zavriPort();
+        closePort();
     }
 }

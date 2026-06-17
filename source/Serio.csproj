@@ -12,10 +12,10 @@
     <Authors>Ma-TA</Authors>
     <Description>Simple Serial Terminal (for Arduino, ESP32 etc.)</Description>
     <Copyright>GPL-3.0-or-later</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIcon>ikona_128px.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/ma-ta/serio</PackageProjectUrl>
+    <PackageIcon>icon_128px.png</PackageIcon>
     <RepositoryUrl>https://github.com/ma-ta/serio</RepositoryUrl>
-    <ApplicationIcon>ikona.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageVersion>1.2.0</PackageVersion>
     <Version>$(PackageVersion)</Version>
@@ -27,12 +27,9 @@
   <ItemGroup>
     <None Remove="copyright_32px.png" />
     <None Remove="github_32px.png" />
-    <None Remove="ikona_128px.png" />
-    <None Remove="ikona_cb_128px.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="ikona.ico" />
+    <None Remove="icon.ico" />
+    <None Remove="icon_128px.png" />
+    <None Remove="icon_bw_128px.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,12 +41,15 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="github_32px.png" />
-    <Resource Include="ikona_128px.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <Resource Include="icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ikona_cb_128px.png" />
+    <Resource Include="icon_128px.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icon_bw_128px.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
