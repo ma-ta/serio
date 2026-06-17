@@ -16,10 +16,14 @@
 > Windows 11+ (min. verze 24H2, build 26100+)
 - [.NET Runtime](//dotnet.microsoft.com/en-us/download/dotnet/10.0/runtime)
 
-SerIO v1.2.0 for:
+SerIO v1.2.0:
 
-- [Windows 11 (64-bit)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-x64.exe)
-- [Windows 11 (ARM64/AArch64)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-arm64.exe)
+- Installer:
+  - [Windows 11 (64-bit)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-x64.exe)
+  - [Windows 11 (ARM64/AArch64)](//github.com/ma-ta/serio/releases/download/v1.2.0/SerioSetup-arm64.exe)
+- Portable (*.exe):
+  - [Windows 11 (64-bit)](//github.com/ma-ta/serio/releases/download/v1.2.0/Serio-x64.exe)
+  - [Windows 11 (ARM64/AArch64)](//github.com/ma-ta/serio/releases/download/v1.2.0/Serio-arm64.exe)
 
 ### Screenshot:
 
