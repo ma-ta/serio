@@ -318,4 +318,22 @@
   <data name="ParityEven" xml:space="preserve">
     <value>Sudá</value>
   </data>
+  <data name="MainMenuWindow" xml:space="preserve">
+    <value>_Okno</value>
+  </data>
+  <data name="MenuWindowZoom" xml:space="preserve">
+    <value>_Zvětšení textu</value>
+  </data>
+  <data name="MenuWindowZoomIn" xml:space="preserve">
+    <value>Z_většit text</value>
+  </data>
+  <data name="MenuWindowZoomOut" xml:space="preserve">
+    <value>Z_menšit text</value>
+  </data>
+  <data name="MenuWindowZoomToolTip" xml:space="preserve">
+    <value>Nastavit velikost textu</value>
+  </data>
+  <data name="MenuWindowZoomReset" xml:space="preserve">
+    <value>_Výchozí</value>
+  </data>
 </root>

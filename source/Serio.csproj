@@ -22,6 +22,7 @@
     <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
     <FileVersion>$(PackageVersion)</FileVersion>
     <InformationalVersion>$(PackageVersion)</InformationalVersion>
+    <PackageTags>uart;com;serial port;serial monitor;arduino;esp32</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

@@ -31,57 +31,58 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Margin="-1,0,-1,0">
             <Menu x:Name="MainMenu" Background="#FF1E2023" IsMainMenu="True">
+                <!-- File -->
                 <MenuItem Header="{x:Static res:Strings.MainMenuFile}" Foreground="#FFF2FFFF" MinHeight="23">
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuFileExport}" Click="export_Click" ToolTip="{x:Static res:Strings.MainMenuFileExportToolTip}" Margin="2,0,0,1">
+                    <!-- Export -->
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuFileExport}" Click="export_Click" ToolTip="{x:Static res:Strings.MainMenuFileExportToolTip}" Padding="0,5,0,5" Margin="2,2,0,2">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE78C;" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuFileQuit}" Click="exit_Click" Margin="2,0,0,1">
+                    <!-- Quit -->
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuFileQuit}" Click="exit_Click" Padding="0,5,0,5" Margin="2,2,0,2">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE7E8;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
+                <!-- Tools -->
                 <MenuItem Header="{x:Static res:Strings.MainMenuTools}" Foreground="#FFF2FFFF">
                     <!-- Copy Rx & Tx -->
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsCopyRx}" ToolTip="{x:Static res:Strings.MainMenuToolsCopyRxToolTip}" Click="copyRx_Click" Margin="2,0,0,1">
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsCopyRx}" ToolTip="{x:Static res:Strings.MainMenuToolsCopyRxToolTip}" Click="copyRx_Click" Padding="0,5,0,5" Margin="2,2,0,2">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xF0E3;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsCopyTx}" ToolTip="{x:Static res:Strings.MainMenuToolsCopyTxToolTip}" Click="copyTx_Click" Margin="2,0,0,1">
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsCopyTx}" ToolTip="{x:Static res:Strings.MainMenuToolsCopyTxToolTip}" Click="copyTx_Click" Padding="0,5,0,5" Margin="2,2,0,2">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xF0E3;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
                     <!-- Erase Rx & Tx -->
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseRx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseRxToolTip}" StaysOpenOnClick="True" Click="eraseReceived_Click" Margin="2,0,0,1">
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseRx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseRxToolTip}" StaysOpenOnClick="True" Click="eraseReceived_Click" Padding="0,5,0,5" Margin="2,2,0,2">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE75C;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseTx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseTxToolTip}" StaysOpenOnClick="True" Click="eraseSent_Click" Margin="2,0,0,1">
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuToolsEraseTx}" ToolTip="{x:Static res:Strings.MainMenuToolsEraseTxToolTip}" StaysOpenOnClick="True" Click="eraseSent_Click" Padding="0,5,0,5" Margin="2,2,0,2">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE75C;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <Separator />
-                    <!-- Window on top -->
-                    <MenuItem Foreground="Black" x:Name="MenuCheckboxOnTop" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxOnTop}" IsChecked="True" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxOnTopToolTip}" Click="MenuCheckboxOnTop_Click" Margin="2,0,0,1" />
                     <Separator />
                     <!-- Wrapping -->
-                    <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapRx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapRx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapRxToolTip}" Margin="2,0,0,1" />
-                    <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapCRTx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapCRTx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapCRTxToolTip}" Margin="2,0,0,1" />
-                    <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapLFTx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapLFTx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapLFTxToolTip}" Margin="2,0,0,1" />
+                    <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapRx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapRx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapRxToolTip}" Padding="0,5,0,5" Margin="2,2,0,2" />
+                    <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapCRTx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapCRTx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapCRTxToolTip}" Padding="0,5,0,5" Margin="2,2,0,2" />
+                    <MenuItem Foreground="Black" x:Name="MenuCheckboxWrapLFTx" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxWrapLFTx}" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxWrapLFTxToolTip}" Padding="0,5,0,5" Margin="2,2,0,2" />
                 </MenuItem>
                 <!-- Port -->
                 <MenuItem Header="{x:Static res:Strings.MainMenuPort}" Foreground="#FFF2FFFF">
                     <!-- DTR, RST -->
-                    <MenuItem MinWidth="275" x:Name="MenuCheckboxDTR" Header="{x:Static res:Strings.MainMenuPortDtr}" ToolTip="{x:Static res:Strings.MainMenuPortDtrToolTip}" Foreground="Black" StaysOpenOnClick="True"  IsCheckable="True" Margin="2,0,0,1" Click="dtrCheckBox_Click" />
-                    <MenuItem x:Name="MenuCheckboxRTS" Header="{x:Static res:Strings.MainMenuPortRst}" ToolTip="{x:Static res:Strings.MainMenuPortRstToolTip}" Foreground="Black" StaysOpenOnClick="True" IsCheckable="True" Margin="2,0,0,1" Click="rtsCheckBox_Click" />
+                    <MenuItem MinWidth="275" x:Name="MenuCheckboxDTR" Header="{x:Static res:Strings.MainMenuPortDtr}" ToolTip="{x:Static res:Strings.MainMenuPortDtrToolTip}" Foreground="Black" StaysOpenOnClick="True"  IsCheckable="True" Padding="0,5,0,5" Margin="2,2,0,2" Click="dtrCheckBox_Click" />
+                    <MenuItem x:Name="MenuCheckboxRTS" Header="{x:Static res:Strings.MainMenuPortRst}" ToolTip="{x:Static res:Strings.MainMenuPortRstToolTip}" Foreground="Black" StaysOpenOnClick="True" IsCheckable="True" Padding="0,5,0,5" Margin="2,2,0,2" Click="rtsCheckBox_Click" />
                     <Separator />
                     <!-- Handshake -->
                     <MenuItem x:Name="MenuItemHandshake" StaysOpenOnClick="True" Margin="2,0,0,1">
@@ -136,8 +137,39 @@
                         </MenuItem.Header>
                     </MenuItem>
                 </MenuItem>
+                <!-- Window -->
+                <MenuItem Header="{x:Static res:Strings.MainMenuWindow}" Foreground="#FFF2FFFF">
+                    <!-- Window on top -->
+                    <MenuItem Foreground="Black" x:Name="MenuCheckboxOnTop" StaysOpenOnClick="True" Header="{x:Static res:Strings.MenuCheckboxOnTop}" IsChecked="True" IsCheckable="True" ToolTip="{x:Static res:Strings.MenuCheckboxOnTopToolTip}" Click="MenuCheckboxOnTop_Click" Padding="0,5,0,5" Margin="2,2,0,2" />
+                    <!-- Zoom -->
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MenuWindowZoom}" ToolTip="{x:Static res:Strings.MenuWindowZoomToolTip}" Padding="0,5,0,5" Margin="2,2,0,2">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE71E;" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        </MenuItem.Icon>
+                        <!-- Zoom In -->
+                        <MenuItem Header="{x:Static res:Strings.MenuWindowZoomIn}" StaysOpenOnClick="True" Padding="0,5,0,5" Margin="2,2,0,2" Click="MenuZoomIn_Click">
+                            <MenuItem.Icon>
+                                <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE8A3;" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <!-- Zoom Out -->
+                        <MenuItem Header="{x:Static res:Strings.MenuWindowZoomOut}" StaysOpenOnClick="True" Padding="0,5,0,5" Margin="2,2,0,2" Click="MenuZoomOut_Click">
+                            <MenuItem.Icon>
+                                <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE71F;" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <!-- Zoom Reset -->
+                        <MenuItem Header="{x:Static res:Strings.MenuWindowZoomReset}" Padding="0,5,0,5" Margin="2,2,0,2" Click="MenuZoomReset_Click">
+                            <MenuItem.Icon>
+                                <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE7A7;" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <!-- Help -->
                 <MenuItem Header="{x:Static res:Strings.MainMenuHelp}" Foreground="#FFF2FFFF">
-                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuHelpAbout}" Click="about_Click" Margin="2,0,0,1">
+                    <!-- About -->
+                    <MenuItem Foreground="Black" Header="{x:Static res:Strings.MainMenuHelpAbout}" Click="about_Click" Padding="0,5,0,5" Margin="2,2,0,2">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Text="&#xE82F;" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </MenuItem.Icon>
@@ -160,4 +192,3 @@
 
     </Grid>
 </Window>
-

@@ -457,6 +457,15 @@ namespace Serio {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Window.
+        /// </summary>
+        public static string MainMenuWindow {
+            get {
+                return ResourceManager.GetString("MainMenuWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert content to send.
         /// </summary>
         public static string MainWindowInputToolTip {
@@ -534,6 +543,51 @@ namespace Serio {
         public static string MenuCheckboxWrapRxToolTip {
             get {
                 return ResourceManager.GetString("MenuCheckboxWrapRxToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text _zoom.
+        /// </summary>
+        public static string MenuWindowZoom {
+            get {
+                return ResourceManager.GetString("MenuWindowZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom _In.
+        /// </summary>
+        public static string MenuWindowZoomIn {
+            get {
+                return ResourceManager.GetString("MenuWindowZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom _Out.
+        /// </summary>
+        public static string MenuWindowZoomOut {
+            get {
+                return ResourceManager.GetString("MenuWindowZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Default.
+        /// </summary>
+        public static string MenuWindowZoomReset {
+            get {
+                return ResourceManager.GetString("MenuWindowZoomReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set size of text.
+        /// </summary>
+        public static string MenuWindowZoomToolTip {
+            get {
+                return ResourceManager.GetString("MenuWindowZoomToolTip", resourceCulture);
             }
         }
         

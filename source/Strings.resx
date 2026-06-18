@@ -318,4 +318,22 @@
   <data name="ParityEven" xml:space="preserve">
     <value>Even</value>
   </data>
+  <data name="MainMenuWindow" xml:space="preserve">
+    <value>_Window</value>
+  </data>
+  <data name="MenuWindowZoom" xml:space="preserve">
+    <value>Text _zoom</value>
+  </data>
+  <data name="MenuWindowZoomIn" xml:space="preserve">
+    <value>Zoom _In</value>
+  </data>
+  <data name="MenuWindowZoomOut" xml:space="preserve">
+    <value>Zoom _Out</value>
+  </data>
+  <data name="MenuWindowZoomToolTip" xml:space="preserve">
+    <value>Set size of text</value>
+  </data>
+  <data name="MenuWindowZoomReset" xml:space="preserve">
+    <value>_Default</value>
+  </data>
 </root>

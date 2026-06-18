@@ -19,6 +19,7 @@ public partial class MainWindow : Window
     private SolidColorBrush colorBlue2 = new(Color.FromArgb(0xFF, 0x56, 0x9C, 0xD6)); // #FF569CD6
     private SolidColorBrush colorGreen = new(Color.FromArgb(0xFF, 0x00, 0xCC, 0x6A)); // #FF00CC6A
     private SolidColorBrush colorRed = new(Color.FromArgb(0xFF, 0xE8, 0x11, 0x23)); // #FFE81123
+    private double textBoxes_defaultFontSize;
 
     // initialization of constants and variables
     private readonly string[] baudRates = { "300", "1200", "2400", "4800", "9600", "19200", "23040", "28800", "38400", "57600", "74880", "115200", "230400", "250000" };
@@ -42,6 +43,8 @@ public partial class MainWindow : Window
         colorWhite.Freeze(); colorBlue1.Freeze(); colorBlue2.Freeze(); colorGreen.Freeze(); colorRed.Freeze();
         
         InitializeComponent();
+
+        textBoxes_defaultFontSize = textBox_Rx.FontSize;
 
         // registration of functions for unexpected exit
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -289,17 +292,6 @@ public partial class MainWindow : Window
     }
 
     // MENU - Tools
-    private void MenuCheckboxOnTop_Click(object sender, RoutedEventArgs e)
-    {
-        if (MenuCheckboxOnTop.IsChecked)
-        {
-            this.Topmost = true;
-        }
-        else
-        {
-            this.Topmost = false;
-        }
-    }
 
     private void copyRx_Click(object sender, RoutedEventArgs e)
     {
@@ -470,6 +462,46 @@ public partial class MainWindow : Window
             sPort.Handshake = sPortHandshake;
             MenuLabelHandshake.Content = handshakeValues[index];
         }
+    }
+
+    // MENU - Window
+
+    private void MenuCheckboxOnTop_Click(object sender, RoutedEventArgs e)
+    {
+        if (MenuCheckboxOnTop.IsChecked)
+        {
+            this.Topmost = true;
+        }
+        else
+        {
+            this.Topmost = false;
+        }
+    }
+
+    // zoom in text in textBoxes
+    private void MenuZoomIn_Click(object sender, RoutedEventArgs e)
+    {
+        const double shift = 1.0;
+        textBox_Rx.FontSize += shift;
+        textBox_Tx.FontSize += shift;
+        textBox_Input.FontSize += shift;
+    }
+
+    // zoom out text in textBoxes
+    private void MenuZoomOut_Click(object sender, RoutedEventArgs e)
+    {
+        const double shift = 1.0;
+        textBox_Rx.FontSize -= (textBox_Rx.FontSize - shift > 0) ? shift : 0;
+        textBox_Tx.FontSize -= (textBox_Tx.FontSize - shift > 0) ? shift : 0;
+        textBox_Input.FontSize -= (textBox_Input.FontSize - shift > 0) ? shift : 0;
+    }
+
+    // reset text zoom in textBoxes
+    private void MenuZoomReset_Click(object sender, RoutedEventArgs e)
+    {
+        textBox_Rx.FontSize = textBoxes_defaultFontSize;
+        textBox_Tx.FontSize = textBoxes_defaultFontSize;
+        textBox_Input.FontSize = textBoxes_defaultFontSize;
     }
 
     // MENU - Help
