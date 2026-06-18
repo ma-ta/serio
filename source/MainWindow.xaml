@@ -25,7 +25,7 @@
             <RowDefinition Height="23" />
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="8*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -182,7 +182,7 @@
         <TextBlock Foreground="#FFF2FFFF" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" Grid.Column="3" Text="{x:Static res:Strings.LabelTx}" VerticalAlignment="Center" FontWeight="Bold"/>
         <TextBox x:Name="textBox_Rx" Grid.ColumnSpan="3" Margin="7,0,3,10" TabIndex="5" IsTabStop="False" FontSize="16" FontFamily="Cascadia Mono, Consolas" VerticalScrollBarVisibility="Visible" Padding="5" Grid.Column="0" AcceptsReturn="True" IsReadOnly="True" Grid.RowSpan="2" Grid.Row="2"  IsEnabled="False" HorizontalScrollBarVisibility="Auto" Background="Black" Foreground="#FF92CAF4" TextWrapping="Wrap"/>
         <TextBox x:Name="textBox_Tx" Grid.ColumnSpan="3" Grid.Row="2" Margin="3,0,7,3" TabIndex="6" IsTabStop="False" FontSize="16" FontFamily="Cascadia Mono, Consolas" VerticalScrollBarVisibility="Visible" Padding="5" Grid.Column="3" AcceptsReturn="True" IsReadOnly="True" Grid.RowSpan="1" IsEnabled="False" HorizontalScrollBarVisibility="Auto" Background="Black" Foreground="#FF569CD6" TextWrapping="Wrap"/>
-        <TextBox x:Name="textBox_Input" Grid.ColumnSpan="2" Margin="3,0,0,10" Padding="5" Grid.Column="3" Grid.RowSpan="1" Grid.Row="3" TabIndex="3" IsEnabled="False" Background="#FF17191C" Foreground="#FFF2FFFF" FontSize="16" TextWrapping="Wrap" ToolTip="{x:Static res:Strings.MainWindowInputToolTip}"/>
+        <TextBox x:Name="textBox_Input" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="3,0,0,10" Padding="5" Grid.Column="3" Grid.RowSpan="1" Grid.Row="3" TabIndex="3" IsEnabled="False" Background="#FF17191C" Foreground="#FFF2FFFF" FontSize="16" TextWrapping="Wrap" ToolTip="{x:Static res:Strings.MainWindowInputToolTip}"/>
         <Button x:Name="button_Send" Foreground="#FF5E95BF" BorderBrush="Black" Background="#FF1E2023" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Content="&#xE725;" Grid.Row="3" Grid.Column="5" TabIndex="4" FontSize="16" Margin="5,0,7,10" Click="button_Send_Click" IsDefault="True" IsEnabled="False" ToolTip="{x:Static res:Strings.ButtonSendToolTip}"/>
         <ComboBox x:Name="comboBox_Port" Grid.Row="4" Margin="7,0,5,7" TabIndex="0" ToolTip="{x:Static res:Strings.ComboBoxPortToolTip}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cascadia Mono, Consolas" FontSize="14.667" FontWeight="Bold" SelectedIndex="0" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="comboBox_BaudRate" Grid.Row="4" Grid.Column="2" Margin="0,0,5,7" TabIndex="1" ToolTip="{x:Static res:Strings.ComboBoxBaudRateToolTip}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14.667" FontFamily="Cascadia Mono, Consolas" FontWeight="Bold" Grid.ColumnSpan="2" SelectionChanged="comboBox_BaudRate_SelectionChanged" />
