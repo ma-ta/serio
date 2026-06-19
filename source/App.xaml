@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:Serio"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <!-- Fluet theme -->
+        <!-- TODO needs XAML code changes (colors, margins, paddings, sizes...)
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        -->
+
     </Application.Resources>
 </Application>
