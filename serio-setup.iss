@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "Serio"
-#define MyAppVersion "1.2.0"
+#define MyAppVersion "1.3.0"
 #define MyAppPublisher "Ma-TA"
 #define MyAppURL "https://github.com/ma-ta/serio"
 #define MyAppExeName "Serio-x64.exe"
